@@ -1,25 +1,25 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+  extends: ["airbnb", "plugin:@typescript-eslint/recommended"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint", "prettier"],
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+    "import/resolver": {
+      typescript: {},
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
+  },
+  rules: {
+    "react/jsx-filename-extension": [
+      2,
+      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
     ],
-    "rules": {
-    }
+    "import/no-extraneous-dependencies": [
+      2,
+      { devDependencies: ["**/test.tsx", "**/test.ts"] },
+    ],
+    "@typescript-eslint/indent": [2, 2],
+    semi: ["error", "always"],
+  },
 };
