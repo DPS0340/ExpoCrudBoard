@@ -9,6 +9,36 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import { BottomTabParamList, LoginParamList, RegisterParamList } from '../types';
 
+// Each tab has its own navigation stack, you can read more about this pattern here:
+// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
+const LoginStack = createStackNavigator<LoginParamList>();
+
+function LoginNavigator() {
+  return (
+    <LoginStack.Navigator>
+      <LoginStack.Screen
+        name="LoginNavigator"
+        component={LoginScreen}
+        options={{ headerTitle: 'Login Page' }}
+      />
+    </LoginStack.Navigator>
+  );
+}
+
+const RegisterStack = createStackNavigator<RegisterParamList>();
+
+function RegisterNavigator() {
+  return (
+    <RegisterStack.Navigator>
+      <RegisterStack.Screen
+        name="TabTwoScreen"
+        component={RegisterScreen}
+        options={{ headerTitle: 'Register Page' }}
+      />
+    </RegisterStack.Navigator>
+  );
+}
+
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
@@ -41,34 +71,4 @@ export default function BottomTabNavigator() {
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const LoginStack = createStackNavigator<LoginParamList>();
-
-function LoginNavigator() {
-  return (
-    <LoginStack.Navigator>
-      <LoginStack.Screen
-        name="LoginNavigator"
-        component={LoginScreen}
-        options={{ headerTitle: 'Login Page' }}
-      />
-    </LoginStack.Navigator>
-  );
-}
-
-const RegisterStack = createStackNavigator<RegisterParamList>();
-
-function RegisterNavigator() {
-  return (
-    <RegisterStack.Navigator>
-      <RegisterStack.Screen
-        name="TabTwoScreen"
-        component={RegisterScreen}
-        options={{ headerTitle: 'Register Page' }}
-      />
-    </RegisterStack.Navigator>
-  );
 }
