@@ -17,17 +17,18 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Login"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    >
       <BottomTab.Screen
         name="Login"
-        component={TabOneNavigator}
+        component={LoginNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Register"
-        component={TabTwoNavigator}
+        component={RegisterNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -44,30 +45,30 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<LoginParamList>();
+const LoginStack = createStackNavigator<LoginParamList>();
 
-function TabOneNavigator() {
+function LoginNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
+    <LoginStack.Navigator>
+      <LoginStack.Screen
+        name="LoginNavigator"
         component={LoginScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Login Page' }}
       />
-    </TabOneStack.Navigator>
+    </LoginStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<RegisterParamList>();
+const RegisterStack = createStackNavigator<RegisterParamList>();
 
-function TabTwoNavigator() {
+function RegisterNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
+    <RegisterStack.Navigator>
+      <RegisterStack.Screen
         name="TabTwoScreen"
         component={RegisterScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Register Page' }}
       />
-    </TabTwoStack.Navigator>
+    </RegisterStack.Navigator>
   );
 }
