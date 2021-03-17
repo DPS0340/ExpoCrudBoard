@@ -3,7 +3,7 @@ import * as RN from 'react-native';
 
 import * as Paper from 'react-native-paper';
 import { Text, View } from '../components/Themed';
-import useOnChange from '../hooks/useOnChange';
+import useOnChange, { parameterType } from '../hooks/useOnChange';
 
 export default function LoginScreen() {
   const [email, setEmail] = React.useState('');
@@ -18,22 +18,19 @@ export default function LoginScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <div>
-        <input
-          type="text"
-          id="email"
+      <View>
+        <Paper.TextInput
           placeholder="Email"
           value={email}
-          onChange={(e) => onChangeEmail(e.target.value)}
+          onChange={(e: parameterType) => onChangeEmail(e)}
         />
-        <input
-          type="password"
-          id="password"
+        <Paper.TextInput
+          secureTextEntry
           placeholder="password"
           value={password}
-          onChange={(e) => onChangePassword(e.target.value)}
+          onChange={(e: parameterType) => onChangePassword(e)}
         />
-      </div>
+      </View>
     </View>
   );
 }
