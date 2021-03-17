@@ -6,7 +6,6 @@ export default function useOnChange(
   setter: Dispatcher<parameterType>,
 ): (e: parameterType) => void {
   return (e: parameterType): void => {
-    console.log(e);
-    // setter(e);
+    setter(e);
   };
 }
