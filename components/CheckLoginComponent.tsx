@@ -17,7 +17,7 @@ export default function CheckLoginComponent({ navigation }) {
 
   const onLogoutClick = () => {
     console.log("Logout");
-    logout;
+    logout();
   };
 
   const LogoutButton = isLogin ? (

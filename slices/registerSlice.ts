@@ -7,7 +7,7 @@ export const registerSlice = createSlice({
     error: null,
   },
   reducers: {
-    register: (state, { payload: { data, navigation } }) => {
+    register: (state, { payload: data }) => {
       console.log("회원가입 액션 호출 - register");
       console.log(data);
       return state;
@@ -21,7 +21,7 @@ export const registerSlice = createSlice({
       };
     },
     registerFailedAsync: (state, { payload: error }) => {
-      console.log("saga에서 login 액션 실패 - registerFailedAsync");
+      console.log("saga에서 register 액션 실패 - registerFailedAsync");
       return {
         ...state,
         isLogin: false,
@@ -32,4 +32,4 @@ export const registerSlice = createSlice({
 });
 
 export const registerReducers = registerSlice.reducer;
-export const registerActions = registerActions.actions;
+export const registerActions = registerSlice.actions;

@@ -6,29 +6,11 @@ import { Text, View } from "../components/Themed";
 import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../slices/loginSlice";
 import { IResponse } from "../types";
-
-const styles = RN.StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "auto",
-    minHeight: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "black",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
+import styles from "../styles/common";
 
 export default function LoginScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const { isLogin, loginError } = useSelector((state) => ({
@@ -67,11 +49,9 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     }
     dispatch(
       loginActions.login({
-        data: {
-          email,
-          password,
-        },
-        navigation,
+        email,
+        username,
+        password,
       })
     );
   };
@@ -86,6 +66,16 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
+            onSubmitEditing={onLoginClick}
+          />
+        </View>
+        <View>
+          <Text>Username</Text>
+          <Paper.TextInput
+            placeholder="Username"
+            value={username}
+            onChangeText={(text: string) => setUsername(text)}
+            onSubmitEditing={onLoginClick}
           />
         </View>
         <View>
@@ -95,6 +85,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             placeholder="Password"
             value={password}
             onChangeText={(text: string) => setPassword(text)}
+            onSubmitEditing={onLoginClick}
           />
         </View>
         {errorComponent}

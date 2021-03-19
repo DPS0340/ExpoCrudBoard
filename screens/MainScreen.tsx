@@ -5,32 +5,15 @@ import * as Paper from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { Text, View } from "../components/Themed";
 import { boardsActions } from "../slices/boardsSlice";
-
-const styles = RN.StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "auto",
-    minHeight: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "black",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
+import styles from "../styles/common";
 
 export default function MainScreen({ navigation }): React.ReactElement {
+  // Navbar TODO?
   const dispatch = useDispatch();
   const goBoard = () => {
     console.log(navigation);
-    dispatch(boardsActions.getBoards(navigation));
+    // TODO
+    navigation.navigate("Board");
   };
   return (
     <View style={styles.container}>
