@@ -18,13 +18,12 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     loginError: state.loginReducers.error,
   }));
 
-  if (isLogin) {
-    navigation.push("Main");
-  }
   React.useEffect(() => {
     console.log({ isLogin });
     console.log({ loginError });
-
+    if (isLogin) {
+      navigation.push("Main");
+    }
     if (loginError) {
       const responseString = loginError.request.response;
       const response: IResponse = JSON.parse(responseString);
