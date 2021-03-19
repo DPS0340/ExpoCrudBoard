@@ -60,21 +60,21 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     console.log(email, password);
     if (!email || !password) {
       setError(noArgumentError);
-    } else {
-      // TODO: Login Logic
-      if (error === noArgumentError) {
-        setError("");
-      }
-      dispatch(
-        loginActions.login({
-          data: {
-            email,
-            password,
-          },
-          navigation,
-        })
-      );
+      return;
     }
+    // TODO: Login Logic
+    if (error === noArgumentError) {
+      setError("");
+    }
+    dispatch(
+      loginActions.login({
+        data: {
+          email,
+          password,
+        },
+        navigation,
+      })
+    );
   };
   const errorComponent = error ? <Text>{error}</Text> : null;
   return (
