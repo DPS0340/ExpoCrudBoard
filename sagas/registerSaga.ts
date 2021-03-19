@@ -15,7 +15,7 @@ export function* registerAsync(action) {
   } catch (error) {
     failed = true;
     console.log(error);
-    yield put(loginActions.loginFailedAsync(error));
+    yield put(registerActions.registerFailedAsync(error));
   }
 
   if (failed) {
