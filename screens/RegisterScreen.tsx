@@ -2,6 +2,7 @@ import * as React from "react";
 import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
 import { Text, View } from "../components/Themed";
 import { registerActions } from "../slices/registerSlice";
 import { IResponse } from "../types";
@@ -33,7 +34,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
   const [error, setError] = React.useState("");
   const { isRegister, registerError } = useSelector((state) => ({
     isRegister: state.registerReducers.isRegister,
-    RegisterError: state.registerReducers.error,
+    registerError: state.registerReducers.error,
   }));
 
   React.useEffect(() => {
@@ -53,7 +54,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
       }
       setError(`${errorCode} 오류 발생`);
     }
-  }, [isLogin, loginError]);
+  }, [isRegister, registerError]);
   const dispatch = useDispatch();
   const noArgumentError: string =
     "이메일 혹은 닉네임, 비밀번호가 입력되지 않았습니다.";
