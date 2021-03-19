@@ -8,8 +8,14 @@ export const loginSlice = createSlice({
   },
   reducers: {
     login: (state, { payload: { data, navigation } }) => {
-      console.log("로그인 액션 호출 - getBoards");
+      console.log("로그인 액션 호출 - login");
       console.log(data);
+    },
+    logout: (state) => {
+      return {
+        ...state,
+        isLogin: false,
+      };
     },
     loginAsync: (state, { payload: data }) => {
       console.log("saga에서 login 액션 호출 - loginAsync");
