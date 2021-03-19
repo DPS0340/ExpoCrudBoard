@@ -6,26 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Text, View } from "../components/Themed";
 import { registerActions } from "../slices/registerSlice";
 import { IResponse } from "../types";
-
-const styles = RN.StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "auto",
-    minHeight: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "black",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
+import styles from "../styles/common";
 
 export default function RegisterScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");

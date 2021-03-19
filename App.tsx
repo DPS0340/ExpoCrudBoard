@@ -79,6 +79,14 @@ export default function App() {
                     title: "Main Page",
                   })}
                 />
+                <Stack.Screen
+                  name="Board"
+                  component={BoardScreen}
+                  options={({ navigation, route }) => ({
+                    headerLeft: (props) => null,
+                    title: "Main Page",
+                  })}
+                />
               </Stack.Navigator>
             </NavigationContainer>
           </PaperProvider>
