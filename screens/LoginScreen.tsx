@@ -41,15 +41,15 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     <View style={styles.container}>
       <Text style={styles.title}>Please Login.</Text>
       <View>
-        <div>
+        <View>
           <Text>Email</Text>
           <Paper.TextInput
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
           />
-        </div>
-        <div>
+        </View>
+        <View>
           <Text>Password</Text>
           <Paper.TextInput
             secureTextEntry
@@ -57,7 +57,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             value={password}
             onChangeText={(text: string) => setPassword(text)}
           />
-        </div>
+        </View>
         {errorComponent}
         <Paper.Button
           mode="contained"
