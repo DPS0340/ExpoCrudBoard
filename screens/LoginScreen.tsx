@@ -29,6 +29,7 @@ const styles = RN.StyleSheet.create({
 
 export default function LoginScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const { isLogin, loginError } = useSelector((state) => ({
@@ -83,6 +84,14 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
+          />
+        </View>
+        <View>
+          <Text>Username</Text>
+          <Paper.TextInput
+            placeholder="Username"
+            value={username}
+            onChangeText={(text: string) => setUsername(text)}
           />
         </View>
         <View>
