@@ -74,7 +74,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
         >
           Register
         </Paper.Button>
-        <Text>
+        <View>
           <Text>Login? </Text>
           <Paper.Button
             mode="contained"
@@ -85,7 +85,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           >
             Login
           </Paper.Button>
-        </Text>
+        </View>
       </View>
     </View>
   );
