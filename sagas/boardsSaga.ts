@@ -8,7 +8,7 @@ export function* getBoardsAsync(action) {
   try {
     response = yield Axios.get(`${url}/board/`);
   } catch (error) {
-    yield put(boardsActions.getBoardsAsync(error));
+    yield put(boardsActions.getBoardsFailedAsync(error));
     return;
   }
   console.log({ response });
