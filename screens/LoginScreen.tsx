@@ -1,32 +1,33 @@
-import * as React from 'react';
-import * as RN from 'react-native';
+import * as React from "react";
+import * as RN from "react-native";
 
-import * as Paper from 'react-native-paper';
-import { Text, View } from '../components/Themed';
-import EditScreenInfo from '../components/EditScreenInfo';
-import useOnChange, { parameterType } from '../hooks/useOnChange';
+import * as Paper from "react-native-paper";
+import { Text, View } from "../components/Themed";
+import EditScreenInfo from "../components/EditScreenInfo";
+import useOnChange, { parameterType } from "../hooks/useOnChange";
 
 const styles = RN.StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "100%",
+    height: "auto",
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: 'red',
+    fontWeight: "bold",
+    color: "red",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
 });
 
 export default function LoginScreen(): React.ReactElement {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const onChangeEmail = useOnChange(setEmail);
   const onChangePassword = useOnChange(setPassword);
   return (

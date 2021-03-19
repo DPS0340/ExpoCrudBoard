@@ -21,5 +21,6 @@ module.exports = {
     ],
     "@typescript-eslint/indent": [2, 2],
     semi: ["error", "always"],
+    quotes: ["double", "backtick"],
   },
 };
