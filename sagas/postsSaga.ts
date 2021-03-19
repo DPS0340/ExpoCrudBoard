@@ -7,9 +7,10 @@ import { postsActions } from "../slices/postsSlice";
 
 export function* getPostsAsync(action) {
   const { pk, data } = action.payload;
+  console.log({ pk, data });
   let response;
   try {
-    response = yield Axios.get(`${url}/post/${pk}`, qs.stringfy(data));
+    response = yield Axios.get(`${url}/post?pk=${pk}`, qs.stringify(data));
   } catch (error) {
     yield put(postsActions.getPostsFailedAsync(error));
     return;
