@@ -29,10 +29,12 @@ export default function LoginScreen({ navigation }): React.ReactElement {
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const onLoginClick = (): void => {
-    if (!(email && password)) {
+    if (email === "" || password === "") {
       setError("email or password not provided.");
+    } else {
+      // TODO: Login Logic
+      setError("");
     }
-    setError("");
   };
   const errorComponent = error ? <Text>Error: {error}</Text> : null;
   return (
@@ -70,7 +72,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
           <Text>Register? </Text>
           <Paper.Button
             mode="contained"
-            onClick={(e: any): void => {
+            onPress={(e: any): void => {
               console.log(navigation);
               navigation.navigate("Register");
             }}
