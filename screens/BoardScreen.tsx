@@ -10,10 +10,10 @@ import BoardComponent from "../components/BoardComponent";
 import { IBoard } from "../types";
 export default function BoardScreen({ navigation }): React.ReactElement {
   const { boards, isLoading, isSuccess, boardError } = useSelector((state) => ({
-    boards: state.boardReducers.boards,
-    isLoading: state.boardReducers.isLoading,
-    isSuccess: state.boardReducers.isSuccess,
-    boardError: state.boardReducers.error,
+    boards: state.boardsReducers.boards,
+    isLoading: state.boardsReducers.isLoading,
+    isSuccess: state.boardsReducers.isSuccess,
+    boardError: state.boardsReducers.error,
   }));
   const dispatch = useDispatch();
   const getBoards = () => {
