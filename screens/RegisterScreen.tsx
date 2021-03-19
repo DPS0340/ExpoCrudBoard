@@ -1,8 +1,7 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
 import * as RN from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
+import * as Paper from "react-native-paper";
 import { Text, View } from "../components/Themed";
 
 const styles = RN.StyleSheet.create({
@@ -29,16 +28,24 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
-  const onLoginClick = (): void => {
-    if (!(email && password)) {
+  React.useEffect(() => {
+    console.log("error:", error);
+  }, [error]);
+  React.useEffect(() => {
+    console.log("navigation:", navigation);
+  }, [navigation]);
+  const onRegisterClick = (): void => {
+    if (email === "" || password === "") {
       setError("email or password not provided.");
+    } else {
+      // TODO: Login Logic
+      setError("");
     }
-    setError("");
   };
-  const errorComponent = error ? <Text>Error: {error}</Text> : null;
+  const errorComponent = error !== "" ? <Text>Error: {error}</Text> : null;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Please Login.</Text>
+      <Text style={styles.title}>Please Register.</Text>
       <View>
         <div>
           <Text>Email</Text>
@@ -62,21 +69,21 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           mode="contained"
           onPress={(e: any): void => {
             console.log("Login");
-            onLoginClick();
+            onRegisterClick();
           }}
         >
-          Login
+          Register
         </Paper.Button>
         <Text>
-          <Text>Register? </Text>
+          <Text>Login? </Text>
           <Paper.Button
             mode="contained"
             onPress={(e: any): void => {
               console.log(navigation);
-              navigation.navigate("Register");
+              navigation.navigate("Login");
             }}
           >
-            Register
+            Login
           </Paper.Button>
         </Text>
       </View>
