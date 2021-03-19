@@ -62,7 +62,6 @@ export default function LoginScreen({ navigation }): React.ReactElement {
       setError(noArgumentError);
       return;
     }
-    // TODO: Login Logic
     if (error === noArgumentError) {
       setError("");
     }
