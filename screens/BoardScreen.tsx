@@ -5,8 +5,7 @@ import * as Paper from "react-native-paper";
 import { Text, View } from "../components/Themed";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/common";
-import PostComponent from "../components/PostComponent";
-import { boardsActions } from "../slices/boardsSlice";
+import PostPreviewComponent from "../components/PostPreviewComponent";
 import { postsActions } from "../slices/postsSlice";
 export default function BoardScreen({ route, navigation }): React.ReactElement {
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
@@ -41,7 +40,7 @@ export default function BoardScreen({ route, navigation }): React.ReactElement {
           data={posts}
           keyExtractor={(item) => item.pk.toString()}
           renderItem={({ item, index, separators }) => (
-            <PostComponent
+            <PostPreviewComponent
               navigation={navigation}
               pk={item.pk}
               author={item.fields.author}

@@ -14,6 +14,7 @@ import BoardsScreen from "./screens/BoardsScreen";
 import AsyncStorage from "@react-native-community/async-storage";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useReduxDevToolsExtension } from "@react-navigation/devtools";
+import PostScreen from "./screens/PostScreen";
 import BoardScreen from "./screens/BoardScreen";
 
 export default function InsideApp() {
@@ -89,6 +90,17 @@ export default function InsideApp() {
                 <CheckLoginComponent navigation={navigation} />
               ),
               title: "Board",
+            })}
+          />
+          <Stack.Screen
+            name="Post"
+            component={PostScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+              title: "Post",
             })}
           />
         </Stack.Navigator>
