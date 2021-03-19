@@ -42,7 +42,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
       setError("");
     }
   };
-  const errorComponent = error !== "" ? <Text>Error: {error}</Text> : null;
+  const errorComponent = error !== "" ? <Text>{error}</Text> : null;
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Please Register.</Text>
