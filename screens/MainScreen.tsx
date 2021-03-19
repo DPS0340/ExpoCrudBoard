@@ -2,7 +2,9 @@ import * as React from "react";
 import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
+import { useDispatch } from "react-redux";
 import { Text, View } from "../components/Themed";
+import { boardsActions } from "../slices/boardsSlice";
 
 const styles = RN.StyleSheet.create({
   container: {
@@ -24,64 +26,17 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default function LoginScreen({ navigation }): React.ReactElement {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
-
-  const onLoginClick = (): void => {
-    if (email === "" || password === "") {
-      setError("email or password not provided.");
-    } else {
-      // TODO: Login Logic
-      setError("");
-    }
+export default function MainScreen({ navigation }): React.ReactElement {
+  const dispatch = useDispatch();
+  const goBoard = () => {
+    console.log(navigation);
+    dispatch(boardsActions.getBoards(navigation));
   };
-  const errorComponent = error ? <Text>Error: {error}</Text> : null;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Please Login.</Text>
-      <View>
-        <View>
-          <Text>Email</Text>
-          <Paper.TextInput
-            placeholder="Email"
-            value={email}
-            onChangeText={(text: string) => setEmail(text)}
-          />
-        </View>
-        <View>
-          <Text>Password</Text>
-          <Paper.TextInput
-            secureTextEntry
-            placeholder="Password"
-            value={password}
-            onChangeText={(text: string) => setPassword(text)}
-          />
-        </View>
-        {errorComponent}
-        <Paper.Button
-          mode="contained"
-          onPress={(): void => {
-            console.log("Login");
-            onLoginClick();
-          }}
-        >
-          Login
-        </Paper.Button>
-        <Text>
-          <Text>Register? </Text>
-          <Paper.Button
-            mode="contained"
-            onPress={(): void => {
-              console.log(navigation);
-              navigation.navigate("Register");
-            }}
-          >
-            Register
-          </Paper.Button>
-        </Text>
-      </View>
+      <Paper.Button mode="contained" onPress={goBoard}>
+        Board
+      </Paper.Button>
     </View>
   );
 }

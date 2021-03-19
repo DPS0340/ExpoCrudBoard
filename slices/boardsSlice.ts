@@ -32,5 +32,5 @@ export const boardsSlice = createSlice({
   },
 });
 
-export const boardsReducer = boardsSlice.reducer;
+export const boardsReducers = boardsSlice.reducer;
 export const boardsActions = boardsSlice.actions;

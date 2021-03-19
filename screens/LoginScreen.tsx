@@ -3,6 +3,8 @@ import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
 import { Text, View } from "../components/Themed";
+import { useDispatch } from "react-redux";
+import { loginActions } from "../slices/loginSlice";
 
 const styles = RN.StyleSheet.create({
   container: {
@@ -28,12 +30,23 @@ export default function LoginScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
+  const dispatch = useDispatch();
   const onLoginClick = (): void => {
-    if (email === "" || password === "") {
+    console.log(email, password);
+    if (!email || !password) {
       setError("email or password not provided.");
     } else {
       // TODO: Login Logic
       setError("");
+      dispatch(
+        loginActions.login({
+          data: {
+            email,
+            password,
+          },
+          navigation,
+        })
+      );
     }
   };
   const errorComponent = error ? <Text>Error: {error}</Text> : null;

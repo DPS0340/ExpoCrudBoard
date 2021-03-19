@@ -1,3 +1,3 @@
-const url = "localhost:4000";
+const url = "https://djangocrudboard.ml";
 
 export default url;
