@@ -3,6 +3,7 @@ import Axios from "axios";
 import { loginActions } from "../slices/loginSlice";
 import url from "./fetchUrl";
 import { registerActions } from "../slices/registerSlice";
+import qs from "query-string";
 
 export function* registerAsync(action) {
   const data = action.payload;

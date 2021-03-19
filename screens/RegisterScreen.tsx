@@ -45,7 +45,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
       navigation.navigate("Main");
     }
     if (registerError) {
-      const responseString = registerError.request.response;
+      const responseString = registerError?.request?.response;
       const response: IResponse = JSON.parse(responseString);
       console.log(response);
       const errorCode = response.status;
