@@ -6,47 +6,22 @@ import { Text, View } from "../components/Themed";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/common";
 import { boardsActions } from "../slices/boardsSlice";
-import BoardComponent from "../components/BoardComponent";
-import { IBoard } from "../types";
-import { FlatList } from "react-native-gesture-handler";
-export default function BoardScreen({ navigation }): React.ReactElement {
-  const { boards, isLoading, isSuccess, boardError } = useSelector((state) => ({
-    boards: state.boardsReducers.boards,
-    isLoading: state.boardsReducers.isLoading,
-    isSuccess: state.boardsReducers.isSuccess,
-    boardError: state.boardsReducers.error,
-  }));
+export default function BoardScreen({ route, navigation }): React.ReactElement {
   const dispatch = useDispatch();
-  const getBoards = () => {
-    dispatch(boardsActions.getBoards(navigation));
-  };
+  const { pk, name } = route.params;
+  navigation.setOptions({
+    title: `${name} 게시판`,
+  });
   React.useEffect(() => {
-    if (!isSuccess && !boardError) {
-      getBoards();
-    }
-  }, [isSuccess, boardError]);
-
-  React.useEffect(() => {
-    console.log(boards);
-  }, [boards]);
+    console.log({ pk, name });
+  }, [pk, name]);
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Boards</Text>
+        <Text style={styles.title}>{`${name} 게시판`}</Text>
       </View>
-      <View>
-        <RN.FlatList
-          data={boards}
-          renderItem={({ item, index, separators }) => (
-            <BoardComponent
-              navigation={navigation}
-              pk={item.pk}
-              name={item.fields.name}
-            />
-          )}
-        />
-      </View>
+      <Text>TODO</Text>
     </View>
   );
 }

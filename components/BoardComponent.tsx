@@ -9,19 +9,12 @@ export default function BoardComponent({
   name,
 }): React.ReactElement {
   const goSelectedBoard = () => {
-    navigation.navigate("");
+    navigation.push("Board", { pk, name });
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{name}</Text>
-      <Paper.Button
-        mode="contained"
-        onPress={() =>
-          navigation.push("board", {
-            pk,
-          })
-        }
-      >
+      <Paper.Button mode="contained" onPress={goSelectedBoard}>
         Join
       </Paper.Button>
     </View>

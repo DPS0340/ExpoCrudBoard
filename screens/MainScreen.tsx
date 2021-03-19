@@ -4,7 +4,6 @@ import * as RN from "react-native";
 import * as Paper from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { Text, View } from "../components/Themed";
-import { boardsActions } from "../slices/boardsSlice";
 import styles from "../styles/common";
 
 export default function MainScreen({ navigation }): React.ReactElement {
@@ -12,7 +11,7 @@ export default function MainScreen({ navigation }): React.ReactElement {
   const dispatch = useDispatch();
   const goBoard = () => {
     console.log(navigation);
-    navigation.push("Board");
+    navigation.push("Boards");
   };
   return (
     <View style={styles.container}>
