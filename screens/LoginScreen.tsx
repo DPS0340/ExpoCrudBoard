@@ -69,6 +69,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     dispatch(
       loginActions.login({
         email,
+        username,
         password,
       })
     );
