@@ -15,3 +15,8 @@ export type LoginParamList = {
 export type RegisterParamList = {
   RegisterParamList: undefined;
 };
+export interface IResponse {
+  success: boolean;
+  status: number;
+  comment: string;
+}

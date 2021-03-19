@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const registerSlice = createSlice({
   name: "register",
   initialState: {
-    isLogin: false,
+    isRegister: false,
     error: null,
   },
   reducers: {
@@ -12,16 +12,16 @@ export const registerSlice = createSlice({
       console.log(data);
       return state;
     },
-    loginAsync: (state, { payload: data }) => {
-      console.log("saga에서 login 액션 호출 - loginAsync");
+    registerAsync: (state, { payload: data }) => {
+      console.log("saga에서 register 액션 호출 - registerAsync");
       console.log(data);
       return {
         ...state,
         isLogin: true,
       };
     },
-    loginFailedAsync: (state, { payload: error }) => {
-      console.log("saga에서 login 액션 실패 - loginFailedAsync");
+    registerFailedAsync: (state, { payload: error }) => {
+      console.log("saga에서 login 액션 실패 - registerFailedAsync");
       return {
         ...state,
         isLogin: false,
@@ -31,5 +31,5 @@ export const registerSlice = createSlice({
   },
 });
 
-export const loginReducers = loginSlice.reducer;
-export const loginActions = loginSlice.actions;
+export const registerReducers = registerSlice.reducer;
+export const registerActions = registerActions.actions;

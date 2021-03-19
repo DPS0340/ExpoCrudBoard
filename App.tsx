@@ -18,6 +18,7 @@ import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootWatcher from "./sagas/rootSaga";
 import { loginActions } from "./slices/loginSlice";
+import CheckLoginComponent from "./components/CheckLoginComponent";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -25,12 +26,8 @@ export default function App() {
   const [theme, setTheme] = React.useState(DefaultTheme);
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-  const dispatch = useDispatch();
   sagaMiddleware.run(rootWatcher);
-  const logout = (navigation) => {
-    dispatch(loginActions.logout());
-    navigation.navigate("Login");
-  };
+
   useEffect(() => {
     console.log("isLoadingComplete:", isLoadingComplete);
   }, [isLoadingComplete]);
@@ -58,6 +55,7 @@ export default function App() {
           <PaperProvider theme={paperTheme}>
             <StatusBar />
             <NavigationContainer>
+              <CheckLoginComponent />
               <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen
                   name="Login"
