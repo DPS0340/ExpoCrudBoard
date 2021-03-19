@@ -29,8 +29,9 @@ const styles = RN.StyleSheet.create({
 
 export default function RegisterScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [nickname, setNickname] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
   const { isRegister, registerError } = useSelector((state) => ({
     isRegister: state.registerReducers.isRegister,
@@ -72,6 +73,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     dispatch(
       registerActions.register({
         email,
+        username,
         nickname,
         password,
       })
@@ -88,6 +90,14 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
+          />
+        </View>
+        <View>
+          <Text>Username</Text>
+          <Paper.TextInput
+            placeholder="Username"
+            value={username}
+            onChangeText={(text: string) => setUsername(text)}
           />
         </View>
         <View>
