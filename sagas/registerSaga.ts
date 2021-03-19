@@ -8,17 +8,12 @@ export function* registerAsync(action) {
   const data = action.payload;
   console.log("data", data);
   let response;
-  let failed = false;
 
   try {
-    response = yield Axios.post(`${url}/register`, data);
+    response = yield Axios.post(`${url}/register`, qs.stringify(data));
   } catch (error) {
-    failed = true;
     console.log(error);
     yield put(registerActions.registerFailedAsync(error));
-  }
-
-  if (failed) {
     return;
   }
   console.log("response", response);

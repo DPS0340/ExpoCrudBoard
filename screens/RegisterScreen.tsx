@@ -70,6 +70,12 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     if (error === noArgumentError) {
       setError("");
     }
+    console.log({
+      email,
+      username,
+      nickname,
+      password,
+    });
     dispatch(
       registerActions.register({
         email,

@@ -2,6 +2,7 @@ import { put } from "redux-saga/effects";
 import Axios from "axios";
 import { loginActions } from "../slices/loginSlice";
 import url from "./fetchUrl";
+import qs from "query-string";
 
 export function* loginAsync(action) {
   const data = action.payload;
@@ -10,16 +11,13 @@ export function* loginAsync(action) {
   let failed = false;
 
   try {
-    response = yield Axios.post(`${url}/login`, data);
+    response = yield Axios.post(`${url}/login`, qs.stringify(data));
   } catch (error) {
-    failed = true;
     console.log(error);
     yield put(loginActions.loginFailedAsync(error));
-  }
-
-  if (failed) {
     return;
   }
+
   console.log("response", response);
   console.log(response.data);
   yield put(loginActions.loginAsync(response.data));
