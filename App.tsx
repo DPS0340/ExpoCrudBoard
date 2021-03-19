@@ -1,29 +1,21 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import LoginScreen from "./screens/LoginScreen";
-import MainScreen from "./screens/MainScreen";
-import RegisterScreen from "./screens/RegisterScreen";
 import {
   Provider as PaperProvider,
   DefaultTheme as PaperLightTheme,
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
-import { Provider as ReactReduxProvider, useDispatch } from "react-redux";
+import { Provider as ReactReduxProvider } from "react-redux";
 import rootReducer from "./slices/rootSlice";
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootWatcher from "./sagas/rootSaga";
-import { loginActions } from "./slices/loginSlice";
-import CheckLoginComponent from "./components/CheckLoginComponent";
-import BoardScreen from "./screens/BoardScreen";
+import InsideApp from "./InsideApp";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  const Stack = createStackNavigator();
   const [theme, setTheme] = React.useState(DefaultTheme);
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
@@ -54,42 +46,7 @@ export default function App() {
       <SafeAreaProvider>
         <ReactReduxProvider store={store}>
           <PaperProvider theme={paperTheme}>
-            <StatusBar />
-            <NavigationContainer>
-              <CheckLoginComponent />
-              <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                  options={({ navigation, route }) => ({
-                    headerLeft: (props) => null,
-                  })}
-                />
-                <Stack.Screen
-                  name="Register"
-                  component={RegisterScreen}
-                  options={({ navigation, route }) => ({
-                    headerLeft: (props) => null,
-                  })}
-                />
-                <Stack.Screen
-                  name="Main"
-                  component={MainScreen}
-                  options={({ navigation, route }) => ({
-                    headerLeft: (props) => null,
-                    title: "Main Page",
-                  })}
-                />
-                <Stack.Screen
-                  name="Board"
-                  component={BoardScreen}
-                  options={({ navigation, route }) => ({
-                    headerLeft: (props) => null,
-                    title: "Boards List",
-                  })}
-                />
-              </Stack.Navigator>
-            </NavigationContainer>
+            <InsideApp />
           </PaperProvider>
         </ReactReduxProvider>
       </SafeAreaProvider>
