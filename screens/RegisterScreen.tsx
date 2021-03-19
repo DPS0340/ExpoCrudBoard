@@ -27,6 +27,7 @@ const styles = RN.StyleSheet.create({
 export default function RegisterScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [nickname, setNickname] = React.useState("");
   const [error, setError] = React.useState("");
   React.useEffect(() => {
     console.log("error:", error);
@@ -43,6 +44,8 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     }
   };
   const errorComponent = error !== "" ? <Text>{error}</Text> : null;
+  const noArgumentError: string =
+    "이메일 혹은 닉네임, 비밀번호가 입력되지 않았습니다.";
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Please Register.</Text>
@@ -53,6 +56,14 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
+          />
+        </View>
+        <View>
+          <Text>Nickname</Text>
+          <Paper.TextInput
+            placeholder="Nickname"
+            value={nickname}
+            onChangeText={(text: string) => setNickname(text)}
           />
         </View>
         <View>
