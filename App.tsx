@@ -76,7 +76,6 @@ export default function App() {
                   component={MainScreen}
                   options={({ navigation, route }) => ({
                     headerLeft: (props) => null,
-                    headerRight: (props) => logout(navigation),
                     title: "Main Page",
                   })}
                 />
