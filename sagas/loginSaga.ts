@@ -11,17 +11,16 @@ export function* loginAsync(action) {
 
   try {
     response = yield Axios.post(`${url}/login`, data);
-    console.log("response", response);
   } catch (error) {
     failed = true;
     console.log(error);
     yield put(loginActions.loginFailedAsync(error));
   }
 
-  console.log("response", response);
-  console.log(response.data);
   if (failed) {
     return;
   }
+  console.log("response", response);
+  console.log(response.data);
   yield put(loginActions.loginAsync(response.data));
 }
