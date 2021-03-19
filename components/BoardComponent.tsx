@@ -11,9 +11,8 @@ export default function BoardComponent({
   const goSelectedBoard = () => {
     navigation.push("Board", { pk, name });
   };
-  React.useEffect(() => {
-    
-  }, [pk]);
+  React.useEffect(() => {}, [pk]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{name}</Text>
