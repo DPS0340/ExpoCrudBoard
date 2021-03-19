@@ -61,7 +61,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
         {errorComponent}
         <Paper.Button
           mode="contained"
-          onPress={(e: any): void => {
+          onPress={(): void => {
             console.log("Login");
             onLoginClick();
           }}
@@ -72,7 +72,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
           <Text>Register? </Text>
           <Paper.Button
             mode="contained"
-            onPress={(e: any): void => {
+            onPress={(): void => {
               console.log(navigation);
               navigation.navigate("Register");
             }}
