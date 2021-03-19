@@ -8,6 +8,7 @@ import styles from "../styles/common";
 import { boardsActions } from "../slices/boardsSlice";
 import BoardComponent from "../components/BoardComponent";
 import { IBoard } from "../types";
+import { FlatList } from "react-native-gesture-handler";
 export default function BoardScreen({ navigation }): React.ReactElement {
   const { boards, isLoading, isSuccess, boardError } = useSelector((state) => ({
     boards: state.boardsReducers.boards,
@@ -25,18 +26,27 @@ export default function BoardScreen({ navigation }): React.ReactElement {
     }
   }, [isSuccess, boardError]);
 
-  const boardComponents = boards.map((data: IBoard) => (
-    <BoardComponent
-      navigation={navigation}
-      pk={data.pk}
-      name={data.fields.name}
-    />
-  ));
+  React.useEffect(() => {
+    console.log(boards);
+  }, [boards]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Boards</Text>
-      {boardComponents}
+      <View>
+        <Text style={styles.title}>Boards</Text>
+      </View>
+      <View>
+        <RN.FlatList
+          data={boards}
+          renderItem={({ item, index, separators }) => (
+            <BoardComponent
+              navigation={navigation}
+              pk={item.pk}
+              name={item.fields.name}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 }

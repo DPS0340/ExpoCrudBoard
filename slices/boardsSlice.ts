@@ -14,14 +14,15 @@ export const boardsSlice = createSlice({
     },
     getBoardsAsync: (state, { payload: data }) => {
       console.log("saga에서 put 액션 호출 - getBoardsAsync");
+      console.log();
       return {
         ...state,
-        rooms: data,
+        boards: data,
         isSuccess: true,
         isLoading: false,
       };
     },
-    getRoomsFailedAsync: (state, { payload: error }) => {
+    getBoardsFailedAsync: (state, { payload: error }) => {
       console.log("saga에서 put 액션 호출 - getRoomsFailedAsync");
       return {
         ...state,

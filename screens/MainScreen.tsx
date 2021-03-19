@@ -12,7 +12,6 @@ export default function MainScreen({ navigation }): React.ReactElement {
   const dispatch = useDispatch();
   const goBoard = () => {
     console.log(navigation);
-    // TODO
     navigation.push("Board");
   };
   return (
