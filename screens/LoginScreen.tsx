@@ -54,6 +54,9 @@ export default function LoginScreen({ navigation }): React.ReactElement {
         password,
       })
     );
+    setEmail("");
+    setUsername("");
+    setPassword("");
   };
   const errorComponent = error ? <Text>{error}</Text> : null;
   return (

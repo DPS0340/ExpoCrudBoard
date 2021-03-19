@@ -65,6 +65,10 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
         password,
       })
     );
+    setEmail("");
+    setUsername("");
+    setNickname("");
+    setPassword("");
   };
 
   return (
