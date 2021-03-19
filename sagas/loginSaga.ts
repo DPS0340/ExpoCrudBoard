@@ -8,7 +8,6 @@ export function* loginAsync(action) {
   const data = action.payload;
   console.log("data", data);
   let response;
-  let failed = false;
 
   try {
     response = yield Axios.post(`${url}/login`, qs.stringify(data));
