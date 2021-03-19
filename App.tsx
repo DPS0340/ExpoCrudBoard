@@ -19,6 +19,7 @@ import createSagaMiddleware from "redux-saga";
 import rootWatcher from "./sagas/rootSaga";
 import { loginActions } from "./slices/loginSlice";
 import CheckLoginComponent from "./components/CheckLoginComponent";
+import BoardScreen from "./screens/BoardScreen";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
