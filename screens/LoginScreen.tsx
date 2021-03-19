@@ -84,6 +84,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
+            onSubmitEditing={onLoginClick}
           />
         </View>
         <View>
@@ -92,6 +93,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             placeholder="Username"
             value={username}
             onChangeText={(text: string) => setUsername(text)}
+            onSubmitEditing={onLoginClick}
           />
         </View>
         <View>
@@ -101,6 +103,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
             placeholder="Password"
             value={password}
             onChangeText={(text: string) => setPassword(text)}
+            onSubmitEditing={onLoginClick}
           />
         </View>
         {errorComponent}

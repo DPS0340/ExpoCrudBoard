@@ -61,7 +61,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     "이메일 혹은 닉네임, 비밀번호가 입력되지 않았습니다.";
   const errorComponent = error !== "" ? <Text>{error}</Text> : null;
 
-  const onLoginClick = (): void => {
+  const onRegisterClick = (): void => {
     console.log(email, password);
     if (!email || !password) {
       setError(noArgumentError);
@@ -96,6 +96,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
+            onSubmitEditing={onRegisterClick}
           />
         </View>
         <View>
@@ -104,6 +105,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Username"
             value={username}
             onChangeText={(text: string) => setUsername(text)}
+            onSubmitEditing={onRegisterClick}
           />
         </View>
         <View>
@@ -112,6 +114,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Nickname"
             value={nickname}
             onChangeText={(text: string) => setNickname(text)}
+            onSubmitEditing={onRegisterClick}
           />
         </View>
         <View>
@@ -121,10 +124,11 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Password"
             value={password}
             onChangeText={(text: string) => setPassword(text)}
+            onSubmitEditing={onRegisterClick}
           />
         </View>
         {errorComponent}
-        <Paper.Button mode="contained" onPress={onLoginClick}>
+        <Paper.Button mode="contained" onPress={onRegisterClick}>
           Register
         </Paper.Button>
         <View>
