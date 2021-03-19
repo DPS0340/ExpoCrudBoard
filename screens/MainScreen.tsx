@@ -8,7 +8,6 @@ import styles from "../styles/common";
 
 export default function MainScreen({ navigation }): React.ReactElement {
   // Navbar TODO?
-  const dispatch = useDispatch();
   const goBoard = () => {
     console.log(navigation);
     navigation.push("Boards");

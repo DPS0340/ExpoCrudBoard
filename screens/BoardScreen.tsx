@@ -14,6 +14,7 @@ export default function BoardScreen({ route, navigation }): React.ReactElement {
   });
   React.useEffect(() => {
     console.log({ pk, name });
+    dispatch()
   }, [pk, name]);
 
   return (
