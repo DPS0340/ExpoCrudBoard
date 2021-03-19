@@ -3,6 +3,8 @@ import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
 import { Text, View } from "../components/Themed";
+import { registerActions } from "../slices/registerSlice";
+import { IResponse } from "../types";
 
 const styles = RN.StyleSheet.create({
   container: {
@@ -29,23 +31,52 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
   const [password, setPassword] = React.useState("");
   const [nickname, setNickname] = React.useState("");
   const [error, setError] = React.useState("");
+  const { isRegister, registerError } = useSelector((state) => ({
+    isRegister: state.registerReducers.isRegister,
+    RegisterError: state.registerReducers.error,
+  }));
+
   React.useEffect(() => {
-    console.log("error:", error);
-  }, [error]);
-  React.useEffect(() => {
-    console.log("navigation:", navigation);
-  }, [navigation]);
-  const onRegisterClick = (): void => {
-    if (email === "" || password === "") {
-      setError("email or password not provided.");
-    } else {
-      // TODO: Login Logic
-      setError("");
+    console.log({ isRegister });
+    console.log({ registerError });
+    if (isRegister) {
+      navigation.navigate("Main");
     }
-  };
-  const errorComponent = error !== "" ? <Text>{error}</Text> : null;
+    if (registerError) {
+      const responseString = registerError.request.response;
+      const response: IResponse = JSON.parse(responseString);
+      console.log(response);
+      const errorCode = response.status;
+      if (errorCode === 400) {
+        setError("로그인 실패!");
+        return;
+      }
+      setError(`${errorCode} 오류 발생`);
+    }
+  }, [isLogin, loginError]);
+  const dispatch = useDispatch();
   const noArgumentError: string =
     "이메일 혹은 닉네임, 비밀번호가 입력되지 않았습니다.";
+  const errorComponent = error !== "" ? <Text>{error}</Text> : null;
+
+  const onLoginClick = (): void => {
+    console.log(email, password);
+    if (!email || !password) {
+      setError(noArgumentError);
+      return;
+    }
+    if (error === noArgumentError) {
+      setError("");
+    }
+    dispatch(
+      registerActions.register({
+        email,
+        nickname,
+        password,
+      })
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Please Register.</Text>
@@ -76,13 +107,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </View>
         {errorComponent}
-        <Paper.Button
-          mode="contained"
-          onPress={(): void => {
-            console.log("Login");
-            onRegisterClick();
-          }}
-        >
+        <Paper.Button mode="contained" onPress={onLoginClick}>
           Register
         </Paper.Button>
         <View>
