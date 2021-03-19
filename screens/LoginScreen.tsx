@@ -55,7 +55,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     }
   }, [isLogin, loginError]);
   const dispatch = useDispatch();
-  const noArgumentError: string = "email or password not provided.";
+  const noArgumentError: string = "이메일 혹은 비밀번호가 입력되지 않았습니다.";
   const onLoginClick = (): void => {
     console.log(email, password);
     if (!email || !password) {
