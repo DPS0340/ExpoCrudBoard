@@ -16,7 +16,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useReduxDevToolsExtension } from "@react-navigation/devtools";
 import PostScreen from "./screens/PostScreen";
 import BoardScreen from "./screens/BoardScreen";
-import linkingPrefixes from "./linkingPrefixes";
+import LinkingPrefixes from "./LinkingPrefixes";
 
 export default function InsideApp() {
   const Stack = createStackNavigator();
@@ -33,7 +33,7 @@ export default function InsideApp() {
       onStateChange={(state) =>
         AsyncStorage?.setItem(NAVIGATION_PERSISTENCE_KEY, JSON.stringify(state))
       }
-      linking={linkingPrefixes}
+      linking={LinkingPrefixes}
     >
       <StatusBar />
 
