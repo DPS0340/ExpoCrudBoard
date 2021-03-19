@@ -3,7 +3,6 @@ import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
 import { Text, View } from "../components/Themed";
-import useOnChange, { parameterType } from "../hooks/useOnChange";
 
 const styles = RN.StyleSheet.create({
   container: {
@@ -25,7 +24,7 @@ const styles = RN.StyleSheet.create({
   },
 });
 
-export default function LoginScreen(): React.ReactElement {
+export default function LoginScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
@@ -60,12 +59,25 @@ export default function LoginScreen(): React.ReactElement {
         {errorComponent}
         <Paper.Button
           mode="contained"
-          onClick={(e: React.MouseEventHandler<HTMLButtonElement>): void => {
+          onPress={(e: any): void => {
+            console.log("Login");
             onLoginClick();
           }}
         >
-          Login!
+          Login
         </Paper.Button>
+        <Text>
+          <Text>Register? </Text>
+          <Paper.Button
+            mode="contained"
+            onClick={(e: any): void => {
+              console.log(navigation);
+              navigation.navigate("Register");
+            }}
+          >
+            Register
+          </Paper.Button>
+        </Text>
       </View>
     </View>
   );
