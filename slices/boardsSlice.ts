@@ -14,7 +14,6 @@ export const boardsSlice = createSlice({
     },
     getBoardsAsync: (state, { payload: data }) => {
       console.log("saga에서 put 액션 호출 - getBoardsAsync");
-      console.log();
       return {
         ...state,
         boards: data,
