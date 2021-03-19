@@ -13,7 +13,7 @@ export default function MainScreen({ navigation }): React.ReactElement {
   const goBoard = () => {
     console.log(navigation);
     // TODO
-    navigation.navigate("Board");
+    navigation.push("Board");
   };
   return (
     <View style={styles.container}>
