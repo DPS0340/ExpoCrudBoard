@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }): React.ReactElement {
     console.log({ isLogin });
     console.log({ loginError });
     if (isLogin) {
-      navigation.navigate("Main");
+      navigation.push("Main");
     }
     if (loginError) {
       const responseString = loginError.request.response;

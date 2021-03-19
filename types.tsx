@@ -20,3 +20,10 @@ export interface IResponse {
   status: number;
   comment: string;
 }
+export interface IBoardData {
+  name: string;
+}
+export interface IBoard {
+  pk: number;
+  fields: IBoardData;
+}

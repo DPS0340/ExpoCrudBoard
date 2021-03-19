@@ -117,8 +117,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           <Paper.Button
             mode="contained"
             onPress={(): void => {
-              console.log(navigation);
-              navigation.navigate("Login");
+              navigation.push("Login");
             }}
           >
             Login

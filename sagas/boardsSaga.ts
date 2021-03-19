@@ -4,9 +4,13 @@ import { boardsActions } from "../slices/boardsSlice";
 import url from "./fetchUrl";
 
 export function* getBoardsAsync(action) {
-  const { navigation } = action.payload;
-
-  const response = yield Axios.get(`${url}/board/`);
-  yield put(boardsActions.getBoardsAsync(response.data));
-  navigation.navigate("Board");
+  let response;
+  try {
+    response = yield Axios.get(`${url}/board/`);
+  } catch (error) {
+    yield put(boardsActions.getBoardsFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(boardsActions.getBoardsAsync(response.data.data));
 }
