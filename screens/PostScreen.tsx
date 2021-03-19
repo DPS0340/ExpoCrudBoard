@@ -3,20 +3,12 @@ import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
 
-export default function PostComponent({
-  navigation,
-  pk,
-  author,
-  board,
-  content,
-  title,
-  writeAtDT,
-}): React.ReactElement {
-  const writeAt = new Date(Date.parse(writeAtDT));
+export default function PostScreen({ navigation, route }): React.ReactElement {
+  const { pk, author, board, content, title, writeAt } = route.params;
   const authorName = author.fields.username;
   React.useEffect(() => {
-    console.log({ pk, author, board, content, title, writeAtDT });
-  }, [pk, author, board, content, title, writeAtDT]);
+    console.log({ pk, author, board, content, title, writeAt });
+  }, [pk, author, board, content, title, writeAt]);
   navigation.setOptions({
     title,
   });
