@@ -8,6 +8,9 @@ import { loginActions } from "../slices/loginSlice";
 import { IResponse } from "../types";
 import styles from "../styles/common";
 export default function BoardScreen({ navigation }): React.ReactElement {
+  const getBoards = () => {
+    // dispatch(boardsActions.getBoards(navigation));
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Not Implemented</Text>

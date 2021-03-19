@@ -8,10 +8,12 @@ import { boardsActions } from "../slices/boardsSlice";
 import styles from "../styles/common";
 
 export default function MainScreen({ navigation }): React.ReactElement {
+  // Navbar TODO?
   const dispatch = useDispatch();
   const goBoard = () => {
     console.log(navigation);
-    dispatch(boardsActions.getBoards(navigation));
+    // TODO
+    navigation.navigate("Board");
   };
   return (
     <View style={styles.container}>
