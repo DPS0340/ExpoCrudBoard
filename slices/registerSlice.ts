@@ -7,7 +7,7 @@ export const registerSlice = createSlice({
     error: null,
   },
   reducers: {
-    register: (state, { payload: { data, navigation } }) => {
+    register: (state, { payload: data }) => {
       console.log("회원가입 액션 호출 - register");
       console.log(data);
       return state;

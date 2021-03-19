@@ -7,7 +7,7 @@ export const loginSlice = createSlice({
     error: null,
   },
   reducers: {
-    login: (state, { payload: { data, navigation } }) => {
+    login: (state, { payload: data }) => {
       console.log("로그인 액션 호출 - login");
       console.log(data);
     },
