@@ -2,12 +2,14 @@ import styles from "../styles/common";
 import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
+import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 
-export default function BoardComponent({
-  navigation,
-  pk,
-  name,
+export default function BoardComponent(props: {
+  navigation: StackNavigationHelpers;
+  pk: number;
+  name: string;
 }): React.ReactElement {
+  const { navigation, pk, name } = props;
   const goSelectedBoard = () => {
     navigation.push("Board", { pk, name });
   };

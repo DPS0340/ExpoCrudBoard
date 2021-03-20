@@ -3,8 +3,12 @@ import * as Paper from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../slices/loginSlice";
 import { Text, View } from "../components/Themed";
+import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 
-export default function CheckLoginComponent({ navigation }) {
+export default function CheckLoginComponent(props: {
+  navigation: StackNavigationHelpers;
+}) {
+  const { navigation } = props;
   const { isLogin, loginError } = useSelector((state) => ({
     isLogin: state.loginReducers.isLogin,
     loginError: state.loginReducers.error,

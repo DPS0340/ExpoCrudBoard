@@ -7,8 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../slices/loginSlice";
 import { IResponse } from "../types";
 import styles from "../styles/common";
+import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 
-export default function LoginScreen({ navigation }): React.ReactElement {
+export default function LoginScreen(props: {
+  navigation: StackNavigationHelpers;
+}): React.ReactElement {
+  const { navigation } = props;
   const [email, setEmail] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
