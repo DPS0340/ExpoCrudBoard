@@ -2,16 +2,12 @@ import styles from "../styles/common";
 import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
+import { IPostPreviewParams } from "../types";
 
-export default function PostPreviewComponent({
-  navigation,
-  pk,
-  author,
-  board,
-  content,
-  title,
-  writeAtDT,
-}): React.ReactElement {
+export default function PostPreviewComponent(
+  props: IPostPreviewParams
+): React.ReactElement {
+  const { navigation, pk, author, board, content, title, writeAtDT } = props;
   const writeAt = new Date(Date.parse(writeAtDT));
   const authorName = author.fields.username;
   React.useEffect(() => {

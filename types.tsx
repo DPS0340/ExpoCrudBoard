@@ -1,3 +1,5 @@
+import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
@@ -20,10 +22,35 @@ export interface IResponse {
   status: number;
   comment: string;
 }
-export interface IBoardData {
-  name: string;
-}
 export interface IBoard {
   pk: number;
-  fields: IBoardData;
+  fields: {
+    name: string;
+  };
+}
+export type DateTime = string;
+export interface IAuthor {
+  fields: {
+    username: string;
+  };
+}
+export interface IRoute<T> {
+  params: T;
+}
+
+export interface IPostParamsBase {
+  pk: number;
+  author: IAuthor;
+  board: string;
+  content: string;
+  title: string;
+}
+
+export interface IPostParams extends IPostParamsBase {
+  writeAt: Date;
+}
+
+export interface IPostPreviewParams extends IPostParamsBase {
+  navigation: StackNavigationHelpers;
+  writeAtDT: DateTime;
 }

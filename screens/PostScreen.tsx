@@ -2,8 +2,14 @@ import styles from "../styles/common";
 import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
+import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+import { IPostParams, IRoute } from "../types";
 
-export default function PostScreen({ navigation, route }): React.ReactElement {
+export default function PostScreen(props: {
+  navigation: StackNavigationHelpers;
+  route: IRoute<IPostParams>;
+}): React.ReactElement {
+  const { navigation, route } = props;
   const { pk, author, board, content, title, writeAt } = route.params;
   const authorName = author.fields.username;
   React.useEffect(() => {
