@@ -3,6 +3,7 @@ import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+import CommentsComponent from "./CommentsComponent";
 
 export default function BoardComponent(props: {
   navigation: StackNavigationHelpers;
