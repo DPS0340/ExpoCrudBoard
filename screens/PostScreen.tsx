@@ -4,6 +4,7 @@ import * as Paper from "react-native-paper";
 import * as React from "react";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 import { IPostParams, IRoute } from "../types";
+import CommentsComponent from "../components/CommentsComponent";
 
 export default function PostScreen(props: {
   navigation: StackNavigationHelpers;
@@ -11,7 +12,7 @@ export default function PostScreen(props: {
 }): React.ReactElement {
   const { navigation, route } = props;
   const { pk, author, board, content, title, writeAt } = route.params;
-  const authorName = author.fields.username;
+  const authorName = author.fields.nickname;
   React.useEffect(() => {
     console.log({ pk, author, board, content, title, writeAt });
   }, [pk, author, board, content, title, writeAt]);
@@ -24,6 +25,7 @@ export default function PostScreen(props: {
       <Text>작성 시각: {writeAt.toLocaleString()}</Text>
       <Text>작성자: {authorName}</Text>
       <Text>{content}</Text>
+      <CommentsComponent pk={pk} />
     </View>
   );
 }
