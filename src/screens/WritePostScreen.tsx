@@ -5,7 +5,6 @@ import Responsive from "../components/ResponsiveComponent";
 import * as RN from "react-native";
 import styles from "../styles/common";
 import Quill from "quill";
-import "quill/dist/quill.bubble.css";
 import styled from "styled-components/native";
 import * as Paper from "react-native-paper";
 
