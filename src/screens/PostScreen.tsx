@@ -5,6 +5,7 @@ import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/s
 import { IPostParams, IRoute } from "../../types";
 import CommentsComponent from "../components/CommentsComponent";
 import Responsive from "../components/ResponsiveComponent";
+import HTML from "react-native-render-html";
 
 export default function PostScreen(props: {
   navigation: StackNavigationHelpers;
@@ -24,7 +25,7 @@ export default function PostScreen(props: {
       <Paper.Text style={styles.title}>{title}</Paper.Text>
       <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
       <Paper.Text>작성자: {authorName}</Paper.Text>
-      <Paper.Text>{content}</Paper.Text>
+      <HTML source={{ html: content }} />
       <CommentsComponent pk={pk} />
     </Responsive>
   );
