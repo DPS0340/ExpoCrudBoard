@@ -4,13 +4,14 @@ import { boardsActions } from "../slices/boardsSlice";
 import url from "./fetchUrl";
 import qs from "query-string";
 import { postsActions } from "../slices/postsSlice";
+import client from "./client";
 
 export function* getPostsAsync(action) {
   const { pk, data } = action.payload;
   console.log({ pk, data });
   let response;
   try {
-    response = yield Axios.get(`${url}/post?pk=${pk}`, qs.stringify(data));
+    response = yield client.get(`${url}/post?pk=${pk}`, qs.stringify(data));
   } catch (error) {
     yield put(postsActions.getPostsFailedAsync(error));
     return;
