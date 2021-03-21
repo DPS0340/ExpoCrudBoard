@@ -14,7 +14,7 @@ export default function PostPreviewComponent(
     console.log({ pk, author, board, content, title, writeAtDT });
   }, [pk, author, board, content, title, writeAtDT]);
   const onClick = () => {
-    navigation.push("Post", {
+    navigation.push("post", {
       pk,
       author,
       board,

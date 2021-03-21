@@ -26,7 +26,7 @@ export default function LoginScreen(props: {
     console.log({ isLogin });
     console.log({ loginError });
     if (isLogin) {
-      navigation.push("Main");
+      navigation.push("main");
     }
     if (loginError) {
       const responseString = loginError.request.response;
@@ -99,7 +99,6 @@ export default function LoginScreen(props: {
         <Paper.Button
           mode="contained"
           onPress={(): void => {
-            console.log("Login");
             onLoginClick();
           }}
         >
@@ -111,7 +110,7 @@ export default function LoginScreen(props: {
             mode="contained"
             onPress={(): void => {
               console.log(navigation);
-              navigation.navigate("Register");
+              navigation.push("register");
             }}
           >
             Register

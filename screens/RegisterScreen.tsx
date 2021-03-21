@@ -23,7 +23,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     console.log({ isRegister });
     console.log({ registerError });
     if (isRegister) {
-      navigation.push("Login");
+      navigation.push("login");
     }
     if (registerError) {
       const responseString = registerError?.request?.response;
@@ -121,7 +121,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           <Paper.Button
             mode="contained"
             onPress={(): void => {
-              navigation.push("Login");
+              navigation.push("login");
             }}
           >
             Login
