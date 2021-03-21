@@ -5,6 +5,7 @@
 
 import * as React from "react";
 import styled from "styled-components/native";
+import * as RN from "react-native";
 import px2vw from "../utils/px2vw";
 
 const ResponsiveBlock = styled.View`
@@ -29,7 +30,8 @@ function Responsive(props: {
   React.useEffect(() => console.log({ children, rest }), [children, rest]);
   // style, className, onClick, onMouseMove 등의 props를 사용할 수 있도록
   // ...rest를 사용하여 ResponsiveBlock에게 전달
-  return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;
+  const Block = RN.Platform.OS === "web" ? ResponsiveBlock : RN.View;
+  return <Block {...rest}>{children}</Block>;
 }
 
 export default Responsive;
