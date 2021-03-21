@@ -39,7 +39,7 @@ export default function InsideApp() {
       linking={LinkingPrefixes}
     >
       <StatusBar />
-      <Stack.Navigator initialRouteName="login">
+      <Stack.Navigator initialRouteName="main">
         <Stack.Screen
           name="login"
           component={LoginScreen}
