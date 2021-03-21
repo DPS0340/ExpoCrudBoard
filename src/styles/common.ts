@@ -11,5 +11,9 @@ const styles = RN.StyleSheet.create({
     height: 1,
     width: "80%",
   },
+  editContainer: {
+    flex: 1,
+    height: "100%",
+  },
 });
 export default styles;
