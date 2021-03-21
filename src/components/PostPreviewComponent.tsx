@@ -1,8 +1,8 @@
 import styles from "../styles/common";
-import { Text, View } from "../components/Themed";
+import { Text, View } from "./Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
-import { IPostPreviewParams } from "../types";
+import { IPostPreviewParams } from "../../types";
 
 export default function PostPreviewComponent(
   props: IPostPreviewParams

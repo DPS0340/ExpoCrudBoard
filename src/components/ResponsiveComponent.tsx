@@ -6,7 +6,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import * as RN from "react-native";
-import px2vw from "../utils/px2vw";
+import px2vw from "../../utils/px2vw";
 
 const ResponsiveBlock = styled.View`
   display: flex;
