@@ -5,19 +5,20 @@
 
 import * as React from "react";
 import styled from "styled-components/native";
+import px2vw from "../utils/px2vw";
 
 const ResponsiveBlock = styled.View`
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: 1024px;
-  margin: 0 auto; /* 중앙 정렬 */
-  /* 브라우저 크기에 따라 가로 사이즈 변경 */
-  @media (max-width: 1024px) {
-    width: 768px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: ${px2vw(64)};
+  max-width: 1024px;
+
+  @media (min-width: 1024px) {
+    flex-wrap: nowrap;
   }
-  @media (max-width: 768px) {
-    width: 100%;
-    font-size: 1rem;
+  @media (max-width: 1024px) {
+    max-width: 100%;
   }
 `;
 

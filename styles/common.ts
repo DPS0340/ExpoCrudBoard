@@ -1,9 +1,7 @@
 import * as RN from "react-native";
 
 const styles = RN.StyleSheet.create({
-  container: {
-    width: "100%",
-  },
+  container: {},
   title: {
     fontSize: 16,
     fontWeight: "bold",
