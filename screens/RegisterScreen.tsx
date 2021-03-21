@@ -73,10 +73,10 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Please Register.</Text>
+      <Paper.Text style={styles.title}>Please Register.</Paper.Text>
       <View>
         <View>
-          <Text>Email</Text>
+          <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             placeholder="Email"
             value={email}
@@ -85,7 +85,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </View>
         <View>
-          <Text>Username</Text>
+          <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             placeholder="Username"
             value={username}
@@ -94,7 +94,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </View>
         <View>
-          <Text>Nickname</Text>
+          <Paper.Text>Nickname</Paper.Text>
           <Paper.TextInput
             placeholder="Nickname"
             value={nickname}
@@ -103,7 +103,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </View>
         <View>
-          <Text>Password</Text>
+          <Paper.Text>Password</Paper.Text>
           <Paper.TextInput
             secureTextEntry
             placeholder="Password"
@@ -117,7 +117,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           Register
         </Paper.Button>
         <View>
-          <Text>Login? </Text>
+          <Paper.Text>Login? </Paper.Text>
           <Paper.Button
             mode="contained"
             onPress={(): void => {

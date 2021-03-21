@@ -8,6 +8,7 @@ import { loginActions } from "../slices/loginSlice";
 import { IResponse } from "../types";
 import styles from "../styles/common";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+import Responsive from "../components/ResponsiveComponent";
 
 export default function LoginScreen(props: {
   navigation: StackNavigationHelpers;
@@ -64,11 +65,11 @@ export default function LoginScreen(props: {
   };
   const errorComponent = error ? <Text>{error}</Text> : null;
   return (
-    <View style={styles.container}>
+    <Responsive style={styles.container}>
       <Text style={styles.title}>Please Login.</Text>
       <View>
         <View>
-          <Text>Email</Text>
+          <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             placeholder="Email"
             value={email}
@@ -77,7 +78,7 @@ export default function LoginScreen(props: {
           />
         </View>
         <View>
-          <Text>Username</Text>
+          <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             placeholder="Username"
             value={username}
@@ -86,7 +87,7 @@ export default function LoginScreen(props: {
           />
         </View>
         <View>
-          <Text>Password</Text>
+          <Paper.Text>Password</Paper.Text>
           <Paper.TextInput
             secureTextEntry
             placeholder="Password"
@@ -106,7 +107,7 @@ export default function LoginScreen(props: {
           Login
         </Paper.Button>
         <View>
-          <Text>Register? </Text>
+          <Paper.Text>Register? </Paper.Text>
           <Paper.Button
             mode="contained"
             onPress={(): void => {
@@ -118,6 +119,6 @@ export default function LoginScreen(props: {
           </Paper.Button>
         </View>
       </View>
-    </View>
+    </Responsive>
   );
 }
