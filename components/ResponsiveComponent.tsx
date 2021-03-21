@@ -27,7 +27,6 @@ function Responsive(props: {
   children: React.ReactElement[] | React.ReactElement;
 }): React.ReactElement {
   const { children, ...rest } = props;
-  React.useEffect(() => console.log({ children, rest }), [children, rest]);
   // style, className, onClick, onMouseMove 등의 props를 사용할 수 있도록
   // ...rest를 사용하여 ResponsiveBlock에게 전달
   const Block = RN.Platform.OS === "web" ? ResponsiveBlock : RN.View;
