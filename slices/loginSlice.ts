@@ -11,6 +11,9 @@ export const loginSlice = createSlice({
       console.log("로그인 액션 호출 - login");
       console.log(data);
     },
+    checkLogin: (state) => {
+      console.log("로그인 확인 액션 호출 - checkLogin");
+    },
     logout: (state) => {
       return {
         ...state,

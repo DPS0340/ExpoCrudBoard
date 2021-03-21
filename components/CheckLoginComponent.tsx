@@ -19,6 +19,13 @@ export default function CheckLoginComponent(props: {
     navigation.navigate("login");
   };
 
+  React.useEffect(() => {
+    if (!isLogin) {
+      logout();
+    }
+    dispatch(loginActions.checkLogin());
+  }, [isLogin]);
+
   const onLogoutClick = () => {
     console.log("logout");
     logout();

@@ -4,6 +4,7 @@ import { loginActions } from "../slices/loginSlice";
 import url from "./fetchUrl";
 import { registerActions } from "../slices/registerSlice";
 import qs from "query-string";
+import client from "./client";
 
 export function* registerAsync(action) {
   const data = action.payload;
@@ -11,7 +12,7 @@ export function* registerAsync(action) {
   let response;
 
   try {
-    response = yield Axios.post(`${url}/register`, qs.stringify(data));
+    response = yield client.post(`${url}/register`, qs.stringify(data));
   } catch (error) {
     console.log(error);
     yield put(registerActions.registerFailedAsync(error));
