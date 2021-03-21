@@ -5,7 +5,6 @@ import Responsive from "../components/ResponsiveComponent";
 import * as RN from "react-native";
 import styles from "../styles/common";
 import Quill from "quill";
-import "quill/dist/quill.bubble.css";
 import styled from "styled-components/native";
 import * as Paper from "react-native-paper";
 
@@ -57,18 +56,7 @@ export default function WritePostScreen(props: {
   const [content, setContent] = React.useState({ title: "", content: "" });
   React.useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
-      theme: "bubble",
       placeholder: " 내용을 작성하세요...",
-      modules: {
-        // 더 많은 옵션
-        // https://quilljs.com/docs/modules/toolbar/ 참고
-        toolbar: [
-          [{ header: "1" }, { header: "2" }],
-          ["bold", "italic", "underline", "strike"],
-          [{ list: "ordered" }, { list: "bullet" }],
-          ["blockquote", "code-block", "link", "image"],
-        ],
-      },
     });
 
     // quill에 text-change 이벤트 핸들러 등록
