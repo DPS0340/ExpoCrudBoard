@@ -1,9 +1,9 @@
 import * as RN from "react-native";
 
 const styles = RN.StyleSheet.create({
-  container: {},
+  container: { textAlign: "center" },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
   },
   separator: {

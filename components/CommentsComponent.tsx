@@ -27,7 +27,7 @@ export default function CommentsComponent(props: {
   }, [comments, isLoading, isSuccess, boardError]);
 
   return (
-    <View style={styles.container}>
+    <RN.View style={styles.container}>
       <RN.FlatList
         data={comments}
         keyExtractor={(item) => item.pk.toString()}
@@ -35,6 +35,6 @@ export default function CommentsComponent(props: {
           <CommentComponent item={item} pk={item.pk} />
         )}
       />
-    </View>
+    </RN.View>
   );
 }

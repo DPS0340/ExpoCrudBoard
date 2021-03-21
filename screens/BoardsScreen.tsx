@@ -8,6 +8,7 @@ import styles from "../styles/common";
 import { boardsActions } from "../slices/boardsSlice";
 import BoardComponent from "../components/BoardComponent";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+import Responsive from "../components/ResponsiveComponent";
 export default function BoardsScreen(props: {
   navigation: StackNavigationHelpers;
 }): React.ReactElement {
@@ -33,11 +34,11 @@ export default function BoardsScreen(props: {
   }, [boards]);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>Boards</Text>
-      </View>
-      <View>
+    <Responsive style={styles.container}>
+      <RN.View>
+        <Paper.Text style={styles.title}>Boards</Paper.Text>
+      </RN.View>
+      <RN.View>
         <RN.FlatList
           data={boards}
           keyExtractor={(item) => item.pk.toString()}
@@ -49,7 +50,7 @@ export default function BoardsScreen(props: {
             />
           )}
         />
-      </View>
-    </View>
+      </RN.View>
+    </Responsive>
   );
 }

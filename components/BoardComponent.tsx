@@ -2,6 +2,7 @@ import styles from "../styles/common";
 import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
+import * as RN from "react-native";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 import CommentsComponent from "./CommentsComponent";
 
@@ -17,11 +18,11 @@ export default function BoardComponent(props: {
   React.useEffect(() => {}, [pk]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{name}</Text>
+    <RN.View style={styles.container}>
+      <Paper.Text style={styles.title}>{name}</Paper.Text>
       <Paper.Button mode="contained" onPress={goSelectedBoard}>
         Join
       </Paper.Button>
-    </View>
+    </RN.View>
   );
 }

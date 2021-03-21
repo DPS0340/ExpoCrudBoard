@@ -2,7 +2,6 @@ import * as React from "react";
 import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
-import { Text, View } from "../components/Themed";
 import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../slices/loginSlice";
 import { IResponse } from "../types";
@@ -66,9 +65,9 @@ export default function LoginScreen(props: {
   const errorComponent = error ? <Text>{error}</Text> : null;
   return (
     <Responsive style={styles.container}>
-      <Text style={styles.title}>Please Login.</Text>
-      <View>
-        <View>
+      <Paper.Text style={styles.title}>Please Login.</Paper.Text>
+      <RN.View>
+        <RN.View>
           <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             placeholder="Email"
@@ -76,8 +75,8 @@ export default function LoginScreen(props: {
             onChangeText={(text: string) => setEmail(text)}
             onSubmitEditing={onLoginClick}
           />
-        </View>
-        <View>
+        </RN.View>
+        <RN.View>
           <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             placeholder="Username"
@@ -85,8 +84,8 @@ export default function LoginScreen(props: {
             onChangeText={(text: string) => setUsername(text)}
             onSubmitEditing={onLoginClick}
           />
-        </View>
-        <View>
+        </RN.View>
+        <RN.View>
           <Paper.Text>Password</Paper.Text>
           <Paper.TextInput
             secureTextEntry
@@ -95,7 +94,7 @@ export default function LoginScreen(props: {
             onChangeText={(text: string) => setPassword(text)}
             onSubmitEditing={onLoginClick}
           />
-        </View>
+        </RN.View>
         {errorComponent}
         <Paper.Button
           mode="contained"
@@ -106,7 +105,7 @@ export default function LoginScreen(props: {
         >
           Login
         </Paper.Button>
-        <View>
+        <RN.View>
           <Paper.Text>Register? </Paper.Text>
           <Paper.Button
             mode="contained"
@@ -117,8 +116,8 @@ export default function LoginScreen(props: {
           >
             Register
           </Paper.Button>
-        </View>
-      </View>
+        </RN.View>
+      </RN.View>
     </Responsive>
   );
 }

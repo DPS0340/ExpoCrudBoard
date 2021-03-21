@@ -1,10 +1,10 @@
 import styles from "../styles/common";
-import { Text, View } from "../components/Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 import { IPostParams, IRoute } from "../types";
 import CommentsComponent from "../components/CommentsComponent";
+import Responsive from "../components/ResponsiveComponent";
 
 export default function PostScreen(props: {
   navigation: StackNavigationHelpers;
@@ -12,7 +12,7 @@ export default function PostScreen(props: {
 }): React.ReactElement {
   const { navigation, route } = props;
   const { pk, author, board, content, title, writeAt } = route.params;
-  const authorName = author.fields.nickname;
+  const authorName = author?.fields?.nickname ?? navigation.navigate("Login");
   React.useEffect(() => {
     console.log({ pk, author, board, content, title, writeAt });
   }, [pk, author, board, content, title, writeAt]);
@@ -20,12 +20,12 @@ export default function PostScreen(props: {
     title,
   });
   return (
-    <View style={styles.container}>
+    <Responsive style={styles.container}>
       <Paper.Text style={styles.title}>{title}</Paper.Text>
       <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
       <Paper.Text>작성자: {authorName}</Paper.Text>
       <Paper.Text>{content}</Paper.Text>
       <CommentsComponent pk={pk} />
-    </View>
+    </Responsive>
   );
 }
