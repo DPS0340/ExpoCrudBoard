@@ -18,8 +18,9 @@ import PostScreen from "./screens/PostScreen";
 import BoardScreen from "./screens/BoardScreen";
 import LinkingPrefixes from "./LinkingPrefixes";
 import * as RN from "react-native";
-import Responsive from "./src/components/ResponsiveComponent";
-import { View } from "./src/components/Themed";
+import Responsive from "./components/ResponsiveComponent";
+import { View } from "./components/Themed";
+import WritePostScreen from "./screens/WritePostScreen";
 
 const Stack = createStackNavigator();
 const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
@@ -102,6 +103,17 @@ export default function InsideApp() {
               <CheckLoginComponent navigation={navigation} />
             ),
             title: "Post",
+          })}
+        />
+        <Stack.Screen
+          name="postWrite"
+          component={WritePostScreen}
+          options={({ navigation, route }) => ({
+            headerLeft: (props) => null,
+            headerRight: (props) => (
+              <CheckLoginComponent navigation={navigation} />
+            ),
+            title: "Post Write",
           })}
         />
       </Stack.Navigator>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../slices/loginSlice";
 import { Text, View } from "./Themed";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+import { useState } from "react";
 
 export default function CheckLoginComponent(props: {
   navigation: StackNavigationHelpers;
@@ -13,6 +14,7 @@ export default function CheckLoginComponent(props: {
     isLogin: state.loginReducers.isLogin,
     loginError: state.loginReducers.error,
   }));
+  const [send, setSend] = useState(false);
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(loginActions.logout());
@@ -20,10 +22,14 @@ export default function CheckLoginComponent(props: {
   };
 
   React.useEffect(() => {
-    if (!isLogin) {
+    if (!send) {
+      dispatch(loginActions.checkLogin());
+      setSend(true);
+    }
+    console.log({ isLogin });
+    if (send && !isLogin) {
       logout();
     }
-    dispatch(loginActions.checkLogin());
   }, [isLogin]);
 
   const onLogoutClick = () => {
@@ -31,11 +37,12 @@ export default function CheckLoginComponent(props: {
     logout();
   };
 
-  const LogoutButton = isLogin ? (
-    <Paper.Button mode="contained" onPress={onLogoutClick}>
-      Logout
-    </Paper.Button>
-  ) : null;
+  const LogoutButton =
+    !send && !isLogin ? null : (
+      <Paper.Button mode="contained" onPress={onLogoutClick}>
+        Logout
+      </Paper.Button>
+    );
 
   return <View>{LogoutButton}</View>;
 }

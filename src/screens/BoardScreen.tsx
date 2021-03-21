@@ -8,7 +8,14 @@ import styles from "../styles/common";
 import PostPreviewComponent from "../components/PostPreviewComponent";
 import { postsActions } from "../slices/postsSlice";
 import Responsive from "../components/ResponsiveComponent";
-export default function BoardScreen({ route, navigation }): React.ReactElement {
+import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
+import { IRoute } from "../../types";
+export default function BoardScreen(props: {
+  navigation: StackNavigationHelpers;
+  route: IRoute<{ pk: number; name: string }>;
+}): React.ReactElement {
+  const { navigation, route } = props;
+  const { pk, name } = route.params;
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
     isLoading: state.postsReducers.isLoading,
@@ -16,7 +23,6 @@ export default function BoardScreen({ route, navigation }): React.ReactElement {
     postsError: state.postsReducers.error,
   }));
   const dispatch = useDispatch();
-  const { pk, name } = route.params;
   navigation.setOptions({
     title: `${name} 게시판`,
   });
@@ -33,6 +39,10 @@ export default function BoardScreen({ route, navigation }): React.ReactElement {
   React.useEffect(() => {
     console.log({ posts, postsError });
   }, [posts, postsError]);
+
+  const onWriteClicked = () => {
+    navigation.push("postWrite");
+  };
 
   return (
     <Responsive style={styles.container}>
@@ -51,6 +61,9 @@ export default function BoardScreen({ route, navigation }): React.ReactElement {
           />
         )}
       />
+      <Paper.Button mode="contained" onPress={onWriteClicked}>
+        Write
+      </Paper.Button>
     </Responsive>
   );
 }
