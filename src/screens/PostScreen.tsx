@@ -2,7 +2,7 @@ import styles from "../styles/common";
 import * as Paper from "react-native-paper";
 import * as React from "react";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
-import { IPostParams, IRoute } from "../types";
+import { IPostParams, IRoute } from "../../types";
 import CommentsComponent from "../components/CommentsComponent";
 import Responsive from "../components/ResponsiveComponent";
 
