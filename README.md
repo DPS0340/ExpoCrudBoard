@@ -7,6 +7,8 @@
 
 > Yet Another React Native / Expo Board
 
+[demo](https://expocrudboard.netlify.app)
+
 ## Install
 
 ```sh
