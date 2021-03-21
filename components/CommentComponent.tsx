@@ -4,6 +4,7 @@ import * as RN from "react-native";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import ReCommentComponent from "./ReCommentComponent";
+import * as Paper from "react-native-paper";
 
 export default function CommentComponent(props: {
   pk: number;
