@@ -17,14 +17,15 @@ import { useReduxDevToolsExtension } from "@react-navigation/devtools";
 import PostScreen from "./screens/PostScreen";
 import BoardScreen from "./screens/BoardScreen";
 import LinkingPrefixes from "./LinkingPrefixes";
+import * as RN from "react-native";
 
+const Stack = createStackNavigator();
+const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
 export default function InsideApp() {
-  const Stack = createStackNavigator();
-  const navigationRef = React.useRef<NavigationContainerRef>(null);
-  const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
   const [initialState, setInitialState] = React.useState<
     InitialState | undefined
   >();
+  const navigationRef = React.useRef<NavigationContainerRef>(null);
   useReduxDevToolsExtension(navigationRef);
   return (
     <NavigationContainer
@@ -36,73 +37,74 @@ export default function InsideApp() {
       linking={LinkingPrefixes}
     >
       <StatusBar />
-
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
-            headerRight: (props) => (
-              <CheckLoginComponent navigation={navigation} />
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="Register"
-          component={RegisterScreen}
-          options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
-            headerRight: (props) => (
-              <CheckLoginComponent navigation={navigation} />
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="Main"
-          component={MainScreen}
-          options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
-            headerRight: (props) => (
-              <CheckLoginComponent navigation={navigation} />
-            ),
-            title: "Main Page",
-          })}
-        />
-        <Stack.Screen
-          name="Boards"
-          component={BoardsScreen}
-          options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
-            headerRight: (props) => (
-              <CheckLoginComponent navigation={navigation} />
-            ),
-            title: "Boards List",
-          })}
-        />
-        <Stack.Screen
-          name="Board"
-          component={BoardScreen}
-          options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
-            headerRight: (props) => (
-              <CheckLoginComponent navigation={navigation} />
-            ),
-            title: "Board",
-          })}
-        />
-        <Stack.Screen
-          name="Post"
-          component={PostScreen}
-          options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
-            headerRight: (props) => (
-              <CheckLoginComponent navigation={navigation} />
-            ),
-            title: "Post",
-          })}
-        />
-      </Stack.Navigator>
+      <RN.View style={{ flex: 1 }}>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+            })}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+            })}
+          />
+          <Stack.Screen
+            name="Main"
+            component={MainScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+              title: "Main Page",
+            })}
+          />
+          <Stack.Screen
+            name="Boards"
+            component={BoardsScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+              title: "Boards List",
+            })}
+          />
+          <Stack.Screen
+            name="Board"
+            component={BoardScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+              title: "Board",
+            })}
+          />
+          <Stack.Screen
+            name="Post"
+            component={PostScreen}
+            options={({ navigation, route }) => ({
+              headerLeft: (props) => null,
+              headerRight: (props) => (
+                <CheckLoginComponent navigation={navigation} />
+              ),
+              title: "Post",
+            })}
+          />
+        </Stack.Navigator>
+      </RN.View>
     </NavigationContainer>
   );
 }

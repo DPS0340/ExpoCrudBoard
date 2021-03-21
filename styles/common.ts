@@ -5,13 +5,12 @@ const styles = RN.StyleSheet.create({
     width: "100%",
     height: "auto",
     minHeight: "100%",
-    alignItems: "center",
     justifyContent: "center",
+    flex: 1,
   },
   title: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "black",
   },
   separator: {
     marginVertical: 30,
