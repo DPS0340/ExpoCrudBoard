@@ -39,9 +39,9 @@ export default function InsideApp() {
       linking={LinkingPrefixes}
     >
       <StatusBar />
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="login">
         <Stack.Screen
-          name="Login"
+          name="login"
           component={LoginScreen}
           options={({ navigation, route }) => ({
             headerLeft: (props) => null,
@@ -51,7 +51,7 @@ export default function InsideApp() {
           })}
         />
         <Stack.Screen
-          name="Register"
+          name="register"
           component={RegisterScreen}
           options={({ navigation, route }) => ({
             headerLeft: (props) => null,
@@ -61,7 +61,7 @@ export default function InsideApp() {
           })}
         />
         <Stack.Screen
-          name="Main"
+          name="main"
           component={MainScreen}
           options={({ navigation, route }) => ({
             headerLeft: (props) => null,
@@ -72,7 +72,7 @@ export default function InsideApp() {
           })}
         />
         <Stack.Screen
-          name="Boards"
+          name="boards"
           component={BoardsScreen}
           options={({ navigation, route }) => ({
             headerLeft: (props) => null,
@@ -83,7 +83,7 @@ export default function InsideApp() {
           })}
         />
         <Stack.Screen
-          name="Board"
+          name="board"
           component={BoardScreen}
           options={({ navigation, route }) => ({
             headerLeft: (props) => null,
@@ -94,7 +94,7 @@ export default function InsideApp() {
           })}
         />
         <Stack.Screen
-          name="Post"
+          name="post"
           component={PostScreen}
           options={({ navigation, route }) => ({
             headerLeft: (props) => null,

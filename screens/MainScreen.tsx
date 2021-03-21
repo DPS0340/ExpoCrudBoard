@@ -14,7 +14,7 @@ export default function MainScreen(props: {
   const { navigation } = props;
   const goBoard = () => {
     console.log(navigation);
-    navigation.push("Boards");
+    navigation.push("boards");
   };
   return (
     <Responsive style={styles.container}>

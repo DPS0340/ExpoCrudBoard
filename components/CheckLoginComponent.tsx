@@ -16,11 +16,11 @@ export default function CheckLoginComponent(props: {
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(loginActions.logout());
-    navigation.navigate("Login");
+    navigation.navigate("login");
   };
 
   const onLogoutClick = () => {
-    console.log("Logout");
+    console.log("logout");
     logout();
   };
 
