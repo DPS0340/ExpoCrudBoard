@@ -9,7 +9,7 @@ export default function PostPreviewComponent(
 ): React.ReactElement {
   const { navigation, pk, author, board, content, title, writeAtDT } = props;
   const writeAt = new Date(Date.parse(writeAtDT));
-  const authorName = author.fields.username;
+  const authorName = author.fields.nickname;
   React.useEffect(() => {
     console.log({ pk, author, board, content, title, writeAtDT });
   }, [pk, author, board, content, title, writeAtDT]);
