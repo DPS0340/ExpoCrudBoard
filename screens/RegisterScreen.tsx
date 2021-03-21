@@ -23,7 +23,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     console.log({ isRegister });
     console.log({ registerError });
     if (isRegister) {
-      navigation.navigate("Main");
+      navigation.push("Login");
     }
     if (registerError) {
       const responseString = registerError?.request?.response;
