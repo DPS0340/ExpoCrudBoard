@@ -62,7 +62,7 @@ export default function LoginScreen(props: {
     setUsername("");
     setPassword("");
   };
-  const errorComponent = error ? <Text>{error}</Text> : null;
+  const errorComponent = error ? <Paper.Text>{error}</Paper.Text> : null;
   return (
     <Responsive style={styles.container}>
       <Paper.Text style={styles.title}>Please Login.</Paper.Text>
