@@ -25,9 +25,9 @@ export default function CommentComponent(props: {
   }, [pk, fields, item]);
   return (
     <View style={styles.container}>
-      <Text>작성자: {author.nickname}</Text>
-      <Text>작성 시각: {writeAt.toLocaleString()}</Text>
-      <Text>{content}</Text>
+      <Paper.Text>작성자: {author.nickname}</Paper.Text>
+      <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
+      <Paper.Text>{content}</Paper.Text>
       <RN.FlatList
         data={recomment_data}
         keyExtractor={(item) => item.pk.toString()}

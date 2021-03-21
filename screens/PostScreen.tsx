@@ -21,10 +21,10 @@ export default function PostScreen(props: {
   });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text>작성 시각: {writeAt.toLocaleString()}</Text>
-      <Text>작성자: {authorName}</Text>
-      <Text>{content}</Text>
+      <Paper.Text style={styles.title}>{title}</Paper.Text>
+      <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
+      <Paper.Text>작성자: {authorName}</Paper.Text>
+      <Paper.Text>{content}</Paper.Text>
       <CommentsComponent pk={pk} />
     </View>
   );
