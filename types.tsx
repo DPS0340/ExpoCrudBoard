@@ -32,6 +32,7 @@ export type DateTime = string;
 export interface IAuthor {
   fields: {
     username: string;
+    nickname: string;
   };
 }
 export interface IRoute<T> {

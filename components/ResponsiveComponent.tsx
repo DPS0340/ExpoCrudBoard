@@ -11,14 +11,14 @@ const ResponsiveBlock = styled.View`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: ${px2vw(64)};
-  max-width: 1024px;
+  margin: 5% 10%;
+  max-width: 100%;
 
   @media (min-width: 1024px) {
     flex-wrap: nowrap;
   }
   @media (max-width: 1024px) {
-    max-width: 100%;
+    margin: 5% 0;
   }
 `;
 

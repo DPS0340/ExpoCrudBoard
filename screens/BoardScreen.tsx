@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/common";
 import PostPreviewComponent from "../components/PostPreviewComponent";
 import { postsActions } from "../slices/postsSlice";
+import Responsive from "../components/ResponsiveComponent";
 export default function BoardScreen({ route, navigation }): React.ReactElement {
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
@@ -34,24 +35,22 @@ export default function BoardScreen({ route, navigation }): React.ReactElement {
   }, [posts, postsError]);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <RN.FlatList
-          data={posts}
-          keyExtractor={(item) => item.pk.toString()}
-          renderItem={({ item, index, separators }) => (
-            <PostPreviewComponent
-              navigation={navigation}
-              pk={item.pk}
-              author={item.fields.author}
-              board={item.fields.board}
-              content={item.fields.content}
-              title={item.fields.title}
-              writeAtDT={item.fields.writeAt}
-            />
-          )}
-        />
-      </View>
-    </View>
+    <Responsive style={styles.container}>
+      <RN.FlatList
+        data={posts}
+        keyExtractor={(item) => item.pk.toString()}
+        renderItem={({ item, index, separators }) => (
+          <PostPreviewComponent
+            navigation={navigation}
+            pk={item.pk}
+            author={item.fields.author}
+            board={item.fields.board}
+            content={item.fields.content}
+            title={item.fields.title}
+            writeAtDT={item.fields.writeAt}
+          />
+        )}
+      />
+    </Responsive>
   );
 }

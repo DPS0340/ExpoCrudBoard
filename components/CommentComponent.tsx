@@ -25,7 +25,7 @@ export default function CommentComponent(props: {
     });
   }, [pk, fields, item]);
   return (
-    <View style={styles.container}>
+    <RN.View>
       <Paper.Text>작성자: {author.nickname}</Paper.Text>
       <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
       <Paper.Text>{content}</Paper.Text>
@@ -36,6 +36,6 @@ export default function CommentComponent(props: {
           <ReCommentComponent item={item} pk={item.pk} />
         )}
       />
-    </View>
+    </RN.View>
   );
 }

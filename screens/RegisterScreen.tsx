@@ -3,10 +3,10 @@ import * as RN from "react-native";
 
 import * as Paper from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { Text, View } from "../components/Themed";
 import { registerActions } from "../slices/registerSlice";
 import { IResponse } from "../types";
 import styles from "../styles/common";
+import Responsive from "../components/ResponsiveComponent";
 
 export default function RegisterScreen({ navigation }): React.ReactElement {
   const [email, setEmail] = React.useState("");
@@ -72,10 +72,10 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
   };
 
   return (
-    <View style={styles.container}>
+    <Responsive style={styles.container}>
       <Paper.Text style={styles.title}>Please Register.</Paper.Text>
-      <View>
-        <View>
+      <RN.View>
+        <RN.View>
           <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             placeholder="Email"
@@ -83,8 +83,8 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             onChangeText={(text: string) => setEmail(text)}
             onSubmitEditing={onRegisterClick}
           />
-        </View>
-        <View>
+        </RN.View>
+        <RN.View>
           <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             placeholder="Username"
@@ -92,8 +92,8 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             onChangeText={(text: string) => setUsername(text)}
             onSubmitEditing={onRegisterClick}
           />
-        </View>
-        <View>
+        </RN.View>
+        <RN.View>
           <Paper.Text>Nickname</Paper.Text>
           <Paper.TextInput
             placeholder="Nickname"
@@ -101,8 +101,8 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             onChangeText={(text: string) => setNickname(text)}
             onSubmitEditing={onRegisterClick}
           />
-        </View>
-        <View>
+        </RN.View>
+        <RN.View>
           <Paper.Text>Password</Paper.Text>
           <Paper.TextInput
             secureTextEntry
@@ -111,12 +111,12 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             onChangeText={(text: string) => setPassword(text)}
             onSubmitEditing={onRegisterClick}
           />
-        </View>
+        </RN.View>
         {errorComponent}
         <Paper.Button mode="contained" onPress={onRegisterClick}>
           Register
         </Paper.Button>
-        <View>
+        <RN.View>
           <Paper.Text>Login? </Paper.Text>
           <Paper.Button
             mode="contained"
@@ -126,8 +126,8 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           >
             Login
           </Paper.Button>
-        </View>
-      </View>
-    </View>
+        </RN.View>
+      </RN.View>
+    </Responsive>
   );
 }
