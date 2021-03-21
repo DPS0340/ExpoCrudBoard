@@ -18,8 +18,8 @@ import PostScreen from "./screens/PostScreen";
 import BoardScreen from "./screens/BoardScreen";
 import LinkingPrefixes from "./LinkingPrefixes";
 import * as RN from "react-native";
-import Responsive from "./components/ResponsiveComponent";
-import { View } from "./components/Themed";
+import Responsive from "./src/components/ResponsiveComponent";
+import { View } from "./src/components/Themed";
 
 const Stack = createStackNavigator();
 const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";

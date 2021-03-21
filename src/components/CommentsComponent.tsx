@@ -1,5 +1,5 @@
 import styles from "../styles/common";
-import { Text, View } from "../components/Themed";
+import { Text, View } from "./Themed";
 import * as RN from "react-native";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";

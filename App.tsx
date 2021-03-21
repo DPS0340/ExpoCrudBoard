@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import useCachedResources from "./hooks/useCachedResources";
+import useCachedResources from "./src/hooks/useCachedResources";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {
   Provider as PaperProvider,
@@ -8,11 +8,11 @@ import {
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
 import { Provider as ReactReduxProvider } from "react-redux";
-import rootReducer from "./slices/rootSlice";
+import rootReducer from "./src/slices/rootSlice";
 import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
-import rootWatcher from "./sagas/rootSaga";
-import InsideApp from "./InsideApp";
+import rootWatcher from "./src/sagas/rootSaga";
+import InsideApp from "./src/InsideApp";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
