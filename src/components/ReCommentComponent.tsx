@@ -24,7 +24,7 @@ export default function ReCommentComponent(props: {
   }, [pk, fields, item]);
   return (
     <RN.View>
-      <Paper.Text>작성자: {author.nickname}</Paper.Text>
+      <Paper.Text>작성자: {author.fields.nickname}</Paper.Text>
       <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
       <Paper.Text>{content}</Paper.Text>
     </RN.View>
