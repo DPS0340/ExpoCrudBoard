@@ -11,9 +11,10 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    reset: (state) => {
+    resetStatus: (state) => {
       return {
         ...initialState,
+        posts: state.posts,
       };
     },
     getPosts: (state, { payload }) => {
@@ -38,6 +39,9 @@ export const postsSlice = createSlice({
     },
     writePost: (state, { payload }) => {
       console.log("글 작성 액션 호출 - writePost");
+      return {
+        ...initialState,
+      };
     },
     writePostAsync: (state, { payload: data }) => {
       console.log("saga에서 post 액션 호출 - writePostAsync");
