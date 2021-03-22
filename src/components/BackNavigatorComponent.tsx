@@ -27,6 +27,7 @@ export default function BackNavigatorComponent(props: {
             navigation.goBack();
           }
         }}
+        color={color}
       >
         Back
       </Paper.Button>
