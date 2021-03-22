@@ -38,4 +38,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            web-build s3:// # 
+            web-build s3://expocrudboard # 
