@@ -1,9 +1,5 @@
 <h1 align="center">Welcome to ExpoCrudBoard 👋</h1>
-<p>
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-</p>
+![GitHub](https://img.shields.io/github/license/DPS0340/expocrudboard?style=flat-square)
 
 > Yet Another React Native / Expo Board
 
