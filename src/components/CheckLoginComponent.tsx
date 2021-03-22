@@ -52,15 +52,6 @@ export default function CheckLoginComponent(props: {
         justifyContent: "center",
       }}
     >
-      <Paper.Button
-        onPress={() => {
-          if (navigation.canGoBack()) {
-            navigation.goBack();
-          }
-        }}
-      >
-        Back
-      </Paper.Button>
       {LogoutButton}
     </View>
   );

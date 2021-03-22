@@ -21,6 +21,7 @@ import * as RN from "react-native";
 import Responsive from "./components/ResponsiveComponent";
 import { View } from "./components/Themed";
 import WritePostScreen from "./screens/WritePostScreen";
+import BackNavigatorComponent from "./components/BackNavigatorComponent";
 
 const Stack = createStackNavigator();
 const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
@@ -45,7 +46,9 @@ export default function InsideApp() {
           name="login"
           component={LoginScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
@@ -55,7 +58,9 @@ export default function InsideApp() {
           name="register"
           component={RegisterScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
@@ -65,7 +70,9 @@ export default function InsideApp() {
           name="main"
           component={MainScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
@@ -76,7 +83,9 @@ export default function InsideApp() {
           name="boards"
           component={BoardsScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
@@ -87,7 +96,9 @@ export default function InsideApp() {
           name="board"
           component={BoardScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
@@ -98,7 +109,9 @@ export default function InsideApp() {
           name="post"
           component={PostScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
@@ -109,7 +122,9 @@ export default function InsideApp() {
           name="postWrite"
           component={WritePostScreen}
           options={({ navigation, route }) => ({
-            headerLeft: (props) => null,
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
             headerRight: (props) => (
               <CheckLoginComponent navigation={navigation} />
             ),
