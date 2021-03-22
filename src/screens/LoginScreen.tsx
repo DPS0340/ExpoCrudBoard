@@ -77,6 +77,7 @@ export default function LoginScreen(props: {
             placeholder="Email"
             textContentType="emailAddress"
             autoCompleteType="email"
+            autoCapitalize="none"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
             onSubmitEditing={onLoginClick}
@@ -88,6 +89,7 @@ export default function LoginScreen(props: {
             placeholder="Username"
             textContentType="username"
             autoCompleteType="username"
+            autoCapitalize="none"
             value={username}
             onChangeText={(text: string) => setUsername(text)}
             onSubmitEditing={onLoginClick}
@@ -100,6 +102,7 @@ export default function LoginScreen(props: {
             placeholder="Password"
             textContentType="password"
             autoCompleteType="password"
+            autoCapitalize="none"
             value={password}
             onChangeText={(text: string) => setPassword(text)}
             onSubmitEditing={onLoginClick}
