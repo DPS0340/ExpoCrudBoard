@@ -3,14 +3,17 @@ import * as React from "react";
 export default function useEffectWithInitialCallback(
   initialCallback: () => void,
   callback: () => void,
-  listeners: any[]
+  listeners: any[] = [],
+  returnAfterInitialCallback: boolean = true
 ) {
   const [onEnter, setOnEnter] = React.useState(true);
   React.useEffect(() => {
     if (onEnter) {
       initialCallback();
       setOnEnter(false);
-      return;
+      if (returnAfterInitialCallback) {
+        return;
+      }
     }
     callback();
   }, [...listeners]);
