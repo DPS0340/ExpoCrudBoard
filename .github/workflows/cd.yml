@@ -26,6 +26,9 @@ jobs:
 
       - name: Install Expo-cli    # 의존 파일 설치
         run: sudo npm install -g expo-cli
+        
+      - name: Install Dependencies
+        run: npm install
 
       - name: Build                   # React Build
         run: expo build:web
