@@ -23,7 +23,6 @@ export default function WritePostScreen(props: {
   const dispatch = useDispatch();
 
   const [content, setContent] = React.useState({ pk, title: "", content: "" });
-  const [onEnter, setOnEnter] = React.useState(true);
   const onChangeTitle = (e: any) => {
     setContent({ ...content, title: e.target.value });
   };
