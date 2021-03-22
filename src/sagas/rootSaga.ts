@@ -5,12 +5,12 @@ import { registerActions } from "../slices/registerSlice";
 import { registerAsync } from "./registerSaga";
 import { getBoardsAsync } from "./boardsSaga";
 import { checkLoginAsync, loginAsync } from "./loginSaga";
-import { getPostsAsync } from "./postsSaga";
+import { getPostsAsync, writePostAsync } from "./postsSaga";
 import { postsActions } from "../slices/postsSlice";
 import { commentsActions } from "../slices/commentsSlice";
 import { getCommentsAsync } from "./commentsSaga";
 
-const { getPosts } = postsActions;
+const { getPosts, writePost } = postsActions;
 const { getBoards } = boardsActions;
 const { login, checkLogin } = loginActions;
 const { register } = registerActions;
@@ -20,6 +20,7 @@ export default function* rootWatcher() {
   yield takeLatest(login.type, loginAsync);
   yield takeLatest(register.type, registerAsync);
   yield takeLatest(checkLogin.type, checkLoginAsync);
+  yield takeLatest(writePost.type, writePostAsync);
   yield takeEvery(getBoards.type, getBoardsAsync);
   yield takeEvery(getPosts.type, getPostsAsync);
   yield takeEvery(getComments.type, getCommentsAsync);

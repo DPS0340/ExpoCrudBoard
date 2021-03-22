@@ -19,3 +19,16 @@ export function* getPostsAsync(action) {
   console.log({ response });
   yield put(postsActions.getPostsAsync(response.data.data));
 }
+
+export function* writePostAsync(action) {
+  const data = action.payload;
+  let response;
+  try {
+    response = yield client.post(`${url}/post`, qs.stringify(data));
+  } catch (error) {
+    yield put(postsActions.writePostFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(postsActions.writePostAsync(response.data.data));
+}

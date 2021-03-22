@@ -41,7 +41,7 @@ export default function BoardScreen(props: {
   }, [posts, postsError]);
 
   const onWriteClicked = () => {
-    navigation.push("postWrite");
+    navigation.push("postWrite", { pk });
   };
 
   return (
