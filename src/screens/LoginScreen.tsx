@@ -75,6 +75,7 @@ export default function LoginScreen(props: {
           <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             placeholder="Email"
+            autoCompleteType="email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
             onSubmitEditing={onLoginClick}
@@ -84,6 +85,7 @@ export default function LoginScreen(props: {
           <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             placeholder="Username"
+            autoCompleteType="username"
             value={username}
             onChangeText={(text: string) => setUsername(text)}
             onSubmitEditing={onLoginClick}
@@ -94,6 +96,7 @@ export default function LoginScreen(props: {
           <Paper.TextInput
             secureTextEntry
             placeholder="Password"
+            autoCompleteType="password"
             value={password}
             onChangeText={(text: string) => setPassword(text)}
             onSubmitEditing={onLoginClick}
