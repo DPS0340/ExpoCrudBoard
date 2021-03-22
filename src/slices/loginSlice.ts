@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const loginSlice = createSlice({
   name: "login",
   initialState: {
+    data: {},
     isLogin: false,
     error: null,
   },
@@ -13,6 +14,14 @@ export const loginSlice = createSlice({
     },
     checkLogin: (state) => {
       console.log("로그인 확인 액션 호출 - checkLogin");
+    },
+    checkLoginAsync: (state, { payload: data }) => {
+      console.log("saga에서 로그인 확인 액션 호출 - checkLogin");
+      return {
+        ...state,
+        isLogin: true,
+        data,
+      };
     },
     logout: (state) => {
       return {

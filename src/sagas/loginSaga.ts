@@ -38,5 +38,7 @@ export function* checkLoginAsync(action) {
   console.log(response.data);
   if (!response.data.is_login) {
     yield put(loginActions.logout());
+    return;
   }
+  yield put(loginActions.checkLoginAsync(response.data));
 }
