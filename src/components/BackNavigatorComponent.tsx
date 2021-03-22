@@ -10,15 +10,9 @@ export default function BackNavigatorComponent(props: {
   navigation: StackNavigationHelpers;
 }) {
   const { navigation } = props;
-  const BackButton = navigation.canGoBack() ? (
-    <Paper.Button
-      onPress={() => {
-        navigation.goBack();
-      }}
-    >
-      Back
-    </Paper.Button>
-  ) : null;
+  const color = navigation.canGoBack()
+    ? Paper.Colors.blue400
+    : Paper.Colors.grey400;
   return (
     <View
       style={{
@@ -27,7 +21,15 @@ export default function BackNavigatorComponent(props: {
         justifyContent: "center",
       }}
     >
-      {BackButton}
+      <Paper.Button
+        onPress={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          }
+        }}
+      >
+        Back
+      </Paper.Button>
     </View>
   );
 }
