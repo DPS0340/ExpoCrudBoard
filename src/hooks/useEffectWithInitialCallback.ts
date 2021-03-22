@@ -5,7 +5,7 @@ export default function useEffectWithInitialCallback(
   callback: () => void,
   listeners: any[] = [],
   returnAfterInitialCallback: boolean = true
-) {
+): void {
   const [onEnter, setOnEnter] = React.useState(true);
   React.useEffect(() => {
     if (onEnter) {
