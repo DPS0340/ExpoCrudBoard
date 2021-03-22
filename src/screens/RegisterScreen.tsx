@@ -76,7 +76,6 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
       <Paper.Text style={styles.title}>Please Register.</Paper.Text>
       <RN.View>
         <RN.View>
-          <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             label="Email"
             placeholder="Email"
@@ -89,7 +88,6 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </RN.View>
         <RN.View>
-          <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             label="Username"
             placeholder="Username"
@@ -102,9 +100,8 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </RN.View>
         <RN.View>
-          <Paper.Text>Nickname</Paper.Text>
           <Paper.TextInput
-            label="Nicknake"
+            label="Nickname"
             placeholder="Nickname"
             textContentType="nickname"
             autoCompleteType="username"
@@ -115,7 +112,6 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           />
         </RN.View>
         <RN.View>
-          <Paper.Text>Password</Paper.Text>
           <Paper.TextInput
             secureTextEntry
             label="Password"

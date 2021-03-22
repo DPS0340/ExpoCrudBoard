@@ -72,7 +72,6 @@ export default function LoginScreen(props: {
       <Paper.Text style={styles.title}>Please Login.</Paper.Text>
       <RN.View>
         <RN.View>
-          <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             label="Email"
             placeholder="Email"
@@ -85,7 +84,6 @@ export default function LoginScreen(props: {
           />
         </RN.View>
         <RN.View>
-          <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             label="Username"
             placeholder="Username"
@@ -98,7 +96,6 @@ export default function LoginScreen(props: {
           />
         </RN.View>
         <RN.View>
-          <Paper.Text>Password</Paper.Text>
           <Paper.TextInput
             secureTextEntry
             label="Password"
