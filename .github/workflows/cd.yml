@@ -41,6 +41,7 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
+            --acl public-read \
             web-build s3://expocrudboard # 
             
       - name: Invalidate CloudFront
