@@ -18,20 +18,22 @@ export default function CheckLoginComponent(props: {
     data: state.loginReducers.data,
   }));
   const dispatch = useDispatch();
-  const [isSend, setIsSend] = React.useState(false);
   const route = useRoute();
   const logout = () => {
     dispatch(loginActions.logout());
   };
+  const goLoginIfNotLogined = () => {
+    if (!isLogin && route.name !== "login" && route.name !== "register") {
+      navigation.navigate("login");
+    }
+  };
   useEffectWithInitialCallback(
     () => {
       dispatch(loginActions.checkLogin());
+      goLoginIfNotLogined();
     },
     () => {
-      if (!isLogin && !isSend && route.name !== "login") {
-        navigation.navigate("login");
-        setIsSend(true);
-      }
+      goLoginIfNotLogined();
     },
     [isLogin]
   );
