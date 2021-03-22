@@ -1,0 +1,41 @@
+
+name: Expo build
+on: 
+  push:                               # master Branch에서 push 이벤트가 일어났을 때만 실행
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout source code.   # 레포지토리 체크아웃
+        uses: actions/checkout@master
+
+      - name: Cache node modules      # node modules 캐싱
+        uses: actions/cache@v1
+        with:
+          path: front_codes/project-app/node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+            
+      - name: Display the path
+        run: pwd && ls
+
+      - name: Install Expo-cli    # 의존 파일 설치
+        run: npm install -g expo-cli
+
+      - name: Build                   # React Build
+        run: expo build:web
+
+      - name: Deploy                  # S3에 배포하기
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            web-build s3:// # 
