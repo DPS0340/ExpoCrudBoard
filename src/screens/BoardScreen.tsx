@@ -10,13 +10,13 @@ import { postsActions } from "../slices/postsSlice";
 import Responsive from "../components/ResponsiveComponent";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 import { IRoute } from "../../types";
+import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
 export default function BoardScreen(props: {
   navigation: StackNavigationHelpers;
   route: IRoute<{ pk: number; name: string }>;
 }): React.ReactElement {
   const { navigation, route } = props;
   const { pk, name } = route.params;
-  const [onEnter, setOnEnter] = React.useState(true);
 
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
@@ -25,23 +25,18 @@ export default function BoardScreen(props: {
     postsError: state.postsReducers.error,
   }));
   const dispatch = useDispatch();
+
   React.useEffect(() => {
-    console.log({ pk, name });
-    if (onEnter) {
-      navigation.setOptions({
-        title: `${name} 게시판`,
-      });
-      dispatch(postsActions.resetStatus());
-      dispatch(
-        postsActions.getPosts({
-          pk,
-          data: {},
-        })
-      );
-      setOnEnter(false);
-      return;
-    }
-  }, [posts]);
+    navigation.setOptions({
+      title: `${name} 게시판`,
+    });
+    dispatch(
+      postsActions.getPosts({
+        pk,
+        data: {},
+      })
+    );
+  }, []);
 
   React.useEffect(() => {
     console.log({ posts, postsError });

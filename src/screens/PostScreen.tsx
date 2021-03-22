@@ -27,7 +27,7 @@ export default function PostScreen(props: {
   });
   const deletePostComponent =
     loginData.username === author?.fields?.username ? (
-      <DeletePostComponent navigation={navigation} />
+      <DeletePostComponent navigation={navigation} pk={pk} />
     ) : null;
   return (
     <Responsive style={styles.container}>

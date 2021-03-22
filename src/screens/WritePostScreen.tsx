@@ -6,6 +6,7 @@ import * as Paper from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { postsActions } from "../slices/postsSlice";
 import { IRoute } from "../../types";
+import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
 
 export default function WritePostScreen(props: {
   navigation: StackNavigationHelpers;
@@ -30,18 +31,18 @@ export default function WritePostScreen(props: {
     setContent({ ...content, content: e.target.value });
   };
 
-  React.useEffect(() => {
-    if (onEnter) {
+  useEffectWithInitialCallback(
+    () => {
       dispatch(postsActions.resetStatus());
-      setOnEnter(false);
-      return;
-    }
-    if (!isSuccess || isLoading) {
-      return;
-    }
-    dispatch(postsActions.resetStatus());
-    navigation.push("board", { name, pk });
-  }, [isSuccess, isLoading]);
+    },
+    () => {
+      if (!isSuccess || isLoading) {
+        return;
+      }
+      navigation.push("board", { name, pk });
+    },
+    [isSuccess, isLoading]
+  );
 
   const onWriteClicked = () => {
     dispatch(postsActions.writePost(content));
