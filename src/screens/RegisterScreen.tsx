@@ -79,6 +79,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           <Paper.Text>Email</Paper.Text>
           <Paper.TextInput
             placeholder="Email"
+            autoCompleteType="email"
             value={email}
             onChangeText={(text: string) => setEmail(text)}
             onSubmitEditing={onRegisterClick}
@@ -88,6 +89,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           <Paper.Text>Username</Paper.Text>
           <Paper.TextInput
             placeholder="Username"
+            autoCompleteType="username"
             value={username}
             onChangeText={(text: string) => setUsername(text)}
             onSubmitEditing={onRegisterClick}
@@ -97,6 +99,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           <Paper.Text>Nickname</Paper.Text>
           <Paper.TextInput
             placeholder="Nickname"
+            autoCompleteType="username"
             value={nickname}
             onChangeText={(text: string) => setNickname(text)}
             onSubmitEditing={onRegisterClick}
@@ -107,6 +110,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
           <Paper.TextInput
             secureTextEntry
             placeholder="Password"
+            autoCompleteType="password"
             value={password}
             onChangeText={(text: string) => setPassword(text)}
             onSubmitEditing={onRegisterClick}
