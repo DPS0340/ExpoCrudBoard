@@ -40,7 +40,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
   const dispatch = useDispatch();
   const noArgumentError: string =
     "이메일 혹은 닉네임, 비밀번호가 입력되지 않았습니다.";
-  const errorComponent = error !== "" ? <Text>{error}</Text> : null;
+  const errorComponent = error !== "" ? <Paper.Text>{error}</Paper.Text> : null;
 
   const onRegisterClick = (): void => {
     console.log(email, password);
