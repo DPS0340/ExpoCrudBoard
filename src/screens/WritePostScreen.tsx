@@ -9,10 +9,10 @@ import { IRoute } from "../../types";
 
 export default function WritePostScreen(props: {
   navigation: StackNavigationHelpers;
-  route: IRoute<{ pk: number }>;
+  route: IRoute<{ pk: number; name: string }>;
 }): React.ReactElement {
   const { navigation, route } = props;
-  const { pk } = route.params;
+  const { pk, name } = route.params;
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
     isLoading: state.postsReducers.isLoading,
@@ -22,6 +22,7 @@ export default function WritePostScreen(props: {
   const dispatch = useDispatch();
 
   const [content, setContent] = React.useState({ pk, title: "", content: "" });
+  const [onEnter, setOnEnter] = React.useState(true);
   const onChangeTitle = (e: any) => {
     setContent({ ...content, title: e.target.value });
   };
@@ -30,17 +31,17 @@ export default function WritePostScreen(props: {
   };
 
   React.useEffect(() => {
-    dispatch(postsActions.reset());
-  }, []);
-
-  React.useEffect(() => {
-    if (isLoading || !isSuccess) {
+    if (onEnter) {
+      dispatch(postsActions.resetStatus());
+      setOnEnter(false);
       return;
     }
-    if (navigation.canGoBack()) {
-      navigation.goBack();
+    if (!isSuccess || isLoading) {
+      return;
     }
-  }, [isLoading]);
+    dispatch(postsActions.resetStatus());
+    navigation.push("board", { name, pk });
+  }, [isSuccess, isLoading]);
 
   const onWriteClicked = () => {
     dispatch(postsActions.writePost(content));
@@ -52,12 +53,14 @@ export default function WritePostScreen(props: {
         placeholder="&nbsp;제목을 입력하세요"
         onChange={onChangeTitle}
         value={content.title}
+        onSubmitEditing={(e) => onWriteClicked()}
       />
       <RN.View>
         <Paper.TextInput
           placeholder="&nbsp;내용을 입력하세요"
           onChange={onChangeContent}
           value={content.content}
+          onSubmitEditing={(e) => onWriteClicked()}
         />
         <Paper.Button mode="contained" onPress={onWriteClicked}>
           Write

@@ -16,6 +16,8 @@ export default function BoardScreen(props: {
 }): React.ReactElement {
   const { navigation, route } = props;
   const { pk, name } = route.params;
+  const [onEnter, setOnEnter] = React.useState(true);
+
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
     isLoading: state.postsReducers.isLoading,
@@ -23,25 +25,30 @@ export default function BoardScreen(props: {
     postsError: state.postsReducers.error,
   }));
   const dispatch = useDispatch();
-  navigation.setOptions({
-    title: `${name} 게시판`,
-  });
   React.useEffect(() => {
     console.log({ pk, name });
-    dispatch(
-      postsActions.getPosts({
-        pk,
-        data: {},
-      })
-    );
-  }, [pk, name]);
+    if (onEnter) {
+      navigation.setOptions({
+        title: `${name} 게시판`,
+      });
+      dispatch(postsActions.resetStatus());
+      dispatch(
+        postsActions.getPosts({
+          pk,
+          data: {},
+        })
+      );
+      setOnEnter(false);
+      return;
+    }
+  }, [posts]);
 
   React.useEffect(() => {
     console.log({ posts, postsError });
   }, [posts, postsError]);
 
   const onWriteClicked = () => {
-    navigation.push("postWrite", { pk });
+    navigation.push("postWrite", { name, pk });
   };
 
   return (
