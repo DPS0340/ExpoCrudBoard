@@ -13,7 +13,6 @@ export default function LoginScreen(props: {
   navigation: StackNavigationHelpers;
 }): React.ReactElement {
   const { navigation } = props;
-  const [email, setEmail] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
@@ -47,8 +46,8 @@ export default function LoginScreen(props: {
   const dispatch = useDispatch();
   const noArgumentError: string = "이메일 혹은 비밀번호가 입력되지 않았습니다.";
   const onLoginClick = (): void => {
-    console.log(email, password);
-    if (!email || !password) {
+    console.log({ username, password });
+    if (!username || !password) {
       setError(noArgumentError);
       return;
     }
@@ -57,12 +56,10 @@ export default function LoginScreen(props: {
     }
     dispatch(
       loginActions.login({
-        email,
         username,
         password,
       })
     );
-    setEmail("");
     setUsername("");
     setPassword("");
   };
