@@ -17,16 +17,22 @@ export const loginSlice = createSlice({
     },
     checkLoginAsync: (state, { payload: data }) => {
       console.log("saga에서 로그인 확인 액션 호출 - checkLogin");
+      console.log({ data });
       return {
         ...state,
-        isLogin: true,
+        isLogin: data.is_login,
         data,
       };
     },
     logout: (state) => {
+      console.log("로그아웃 액션 호출 - logout");
+    },
+    logoutAsync: (state, { payload: data }) => {
+      console.log("saga에서 로그아웃 액션 호출 - logoutAsync");
       return {
         ...state,
         isLogin: false,
+        data,
       };
     },
     loginAsync: (state, { payload: data }) => {
