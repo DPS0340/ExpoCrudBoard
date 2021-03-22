@@ -37,12 +37,11 @@ export default function CheckLoginComponent(props: {
     logout();
   };
 
-  const LogoutButton =
-    !send && !isLogin ? null : (
-      <Paper.Button mode="contained" onPress={onLogoutClick}>
-        Logout
-      </Paper.Button>
-    );
+  const LogoutButton = !isLogin ? null : (
+    <Paper.Button mode="contained" onPress={onLogoutClick}>
+      Logout
+    </Paper.Button>
+  );
 
   return (
     <View
