@@ -4,7 +4,7 @@ import * as RN from "react-native";
 import * as Paper from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../slices/loginSlice";
-import { IResponse } from "../types";
+import { IResponse } from "../../types";
 import styles from "../styles/common";
 import { StackNavigationHelpers } from "@react-navigation/stack/lib/typescript/src/types";
 import Responsive from "../components/ResponsiveComponent";
@@ -71,44 +71,39 @@ export default function LoginScreen(props: {
     <Responsive style={styles.container}>
       <Paper.Text style={styles.title}>Please Login.</Paper.Text>
       <RN.View>
-        <RN.View>
-          <Paper.TextInput
-            label="Email"
-            placeholder="Email"
-            textContentType="emailAddress"
-            keyboardType="email-address"
-            autoCompleteType="email"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(text: string) => setEmail(text)}
-            onSubmitEditing={onLoginClick}
-          />
-        </RN.View>
-        <RN.View>
-          <Paper.TextInput
-            label="Username"
-            placeholder="Username"
-            textContentType="username"
-            autoCompleteType="username"
-            autoCapitalize="none"
-            value={username}
-            onChangeText={(text: string) => setUsername(text)}
-            onSubmitEditing={onLoginClick}
-          />
-        </RN.View>
-        <RN.View>
-          <Paper.TextInput
-            secureTextEntry
-            label="Password"
-            placeholder="Password"
-            textContentType="password"
-            autoCompleteType="password"
-            autoCapitalize="none"
-            value={password}
-            onChangeText={(text: string) => setPassword(text)}
-            onSubmitEditing={onLoginClick}
-          />
-        </RN.View>
+        <Paper.TextInput
+          label="Email"
+          placeholder="Email"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+          autoCompleteType="email"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={(text: string) => setEmail(text)}
+          returnKeyType="next"
+        />
+        <Paper.TextInput
+          label="Username"
+          placeholder="Username"
+          textContentType="username"
+          autoCompleteType="username"
+          autoCapitalize="none"
+          value={username}
+          onChangeText={(text: string) => setUsername(text)}
+          returnKeyType="next"
+        />
+        <Paper.TextInput
+          secureTextEntry
+          label="Password"
+          placeholder="Password"
+          textContentType="password"
+          autoCompleteType="password"
+          autoCapitalize="none"
+          value={password}
+          onChangeText={(text: string) => setPassword(text)}
+          onSubmitEditing={onLoginClick}
+          returnKeyType="done"
+        />
         {errorComponent}
         <Paper.Button
           mode="contained"
