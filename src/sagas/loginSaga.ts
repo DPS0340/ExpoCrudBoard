@@ -29,16 +29,24 @@ export function* checkLoginAsync(action) {
   try {
     response = yield client.get(`${url}/login`);
   } catch (error) {
-    console.log(error);
     yield put(loginActions.logout());
     return;
   }
 
-  console.log("response", response);
-  console.log(response.data);
   if (!response.data.is_login) {
     yield put(loginActions.logout());
     return;
   }
   yield put(loginActions.checkLoginAsync(response.data));
+}
+
+export function* logoutAsync(action) {
+  let response;
+  try {
+    response = yield client.get(`${url}/logout`);
+  } catch (error) {
+    yield put(loginActions.logout());
+    return;
+  }
+  yield put(loginActions.logoutAsync(response.data));
 }
