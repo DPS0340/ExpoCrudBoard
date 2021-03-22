@@ -93,6 +93,7 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
             placeholder="Username"
             textContentType="username"
             autoCompleteType="username"
+            keyboardType="email-address"
             autoCapitalize="none"
             value={username}
             onChangeText={(text: string) => setUsername(text)}

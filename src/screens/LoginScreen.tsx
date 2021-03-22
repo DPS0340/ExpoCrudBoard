@@ -76,6 +76,7 @@ export default function LoginScreen(props: {
             label="Email"
             placeholder="Email"
             textContentType="emailAddress"
+            keyboardType="email-address"
             autoCompleteType="email"
             autoCapitalize="none"
             value={email}
