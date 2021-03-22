@@ -29,7 +29,7 @@ export default function WritePostScreen(props: {
       />
       <RN.View>
         <Paper.TextInput
-          placeholder="&nbsp;제목을 입력하세요"
+          placeholder="&nbsp;내용을 입력하세요"
           onChange={onChangeContent}
           value={content.content}
         />
