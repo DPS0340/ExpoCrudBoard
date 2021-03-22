@@ -75,56 +75,49 @@ export default function RegisterScreen({ navigation }): React.ReactElement {
     <Responsive style={styles.container}>
       <Paper.Text style={styles.title}>Please Register.</Paper.Text>
       <RN.View>
-        <RN.View>
-          <Paper.TextInput
-            label="Email"
-            placeholder="Email"
-            textContentType="emailAddress"
-            autoCompleteType="email"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(text: string) => setEmail(text)}
-            onSubmitEditing={onRegisterClick}
-          />
-        </RN.View>
-        <RN.View>
-          <Paper.TextInput
-            label="Username"
-            placeholder="Username"
-            textContentType="username"
-            autoCompleteType="username"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            value={username}
-            onChangeText={(text: string) => setUsername(text)}
-            onSubmitEditing={onRegisterClick}
-          />
-        </RN.View>
-        <RN.View>
-          <Paper.TextInput
-            label="Nickname"
-            placeholder="Nickname"
-            textContentType="nickname"
-            autoCompleteType="username"
-            autoCapitalize="none"
-            value={nickname}
-            onChangeText={(text: string) => setNickname(text)}
-            onSubmitEditing={onRegisterClick}
-          />
-        </RN.View>
-        <RN.View>
-          <Paper.TextInput
-            secureTextEntry
-            label="Password"
-            placeholder="Password"
-            textContentType="password"
-            autoCompleteType="password"
-            autoCapitalize="none"
-            value={password}
-            onChangeText={(text: string) => setPassword(text)}
-            onSubmitEditing={onRegisterClick}
-          />
-        </RN.View>
+        <Paper.TextInput
+          label="Email"
+          placeholder="Email"
+          textContentType="emailAddress"
+          autoCompleteType="email"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={(text: string) => setEmail(text)}
+          returnKeyType="next"
+        />
+        <Paper.TextInput
+          label="Username"
+          placeholder="Username"
+          textContentType="username"
+          autoCompleteType="username"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={username}
+          onChangeText={(text: string) => setUsername(text)}
+          returnKeyType="next"
+        />
+        <Paper.TextInput
+          label="Nickname"
+          placeholder="Nickname"
+          textContentType="nickname"
+          autoCompleteType="username"
+          autoCapitalize="none"
+          value={nickname}
+          onChangeText={(text: string) => setNickname(text)}
+          returnKeyType="done"
+          onSubmitEditing={onRegisterClick}
+        />
+        <Paper.TextInput
+          secureTextEntry
+          label="Password"
+          placeholder="Password"
+          textContentType="password"
+          autoCompleteType="password"
+          autoCapitalize="none"
+          value={password}
+          onChangeText={(text: string) => setPassword(text)}
+          onSubmitEditing={onRegisterClick}
+        />
         {errorComponent}
         <Paper.Button mode="contained" onPress={onRegisterClick}>
           Register
