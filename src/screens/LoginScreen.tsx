@@ -26,7 +26,11 @@ export default function LoginScreen(props: {
     console.log({ isLogin });
     console.log({ loginError });
     if (isLogin) {
-      navigation.push("main");
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        navigation.push("main");
+      }
     }
     if (loginError) {
       const responseString = loginError.request.response;
