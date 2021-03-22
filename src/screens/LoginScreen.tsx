@@ -72,17 +72,6 @@ export default function LoginScreen(props: {
       <Paper.Text style={styles.title}>Please Login.</Paper.Text>
       <RN.View>
         <Paper.TextInput
-          label="Email"
-          placeholder="Email"
-          textContentType="emailAddress"
-          keyboardType="email-address"
-          autoCompleteType="email"
-          autoCapitalize="none"
-          value={email}
-          onChangeText={(text: string) => setEmail(text)}
-          returnKeyType="next"
-        />
-        <Paper.TextInput
           label="Username"
           placeholder="Username"
           textContentType="username"
