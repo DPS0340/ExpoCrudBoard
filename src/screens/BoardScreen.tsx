@@ -45,7 +45,7 @@ export default function BoardScreen(props: {
         data: { start: (page - 1) * 10, end: page * 10 },
       })
     );
-  }, [reset]);
+  }, [pk, reset]);
 
   React.useEffect(() => {
     console.log({ posts, postsError });
