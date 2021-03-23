@@ -15,11 +15,13 @@ export default function BoardScreen(props: {
   navigation: StackNavigationHelpers;
   route: IRoute<{ pk: number; name: string; page: number }>;
 }): React.ReactElement {
+  console.log(props);
   const { navigation, route } = props;
-  if (!route.params["pk"]) {
+  if (!route.params) {
     navigation.navigate("boards");
+    return <></>;
   }
-  const { pk, name, page: pageString } = route.params;
+  const { pk, name, page: pageString } = route.params!;
   const page = +pageString;
 
   const { posts, isLoading, isSuccess, postsError, reset } = useSelector(
