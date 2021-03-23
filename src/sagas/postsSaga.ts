@@ -32,3 +32,16 @@ export function* writePostAsync(action) {
   console.log({ response });
   yield put(postsActions.writePostAsync(response.data.data));
 }
+
+export function* deletePostAsync(action) {
+  const data = action.payload;
+  let response;
+  try {
+    response = yield client.delete(`${url}/post`, { data: qs.stringify(data) });
+  } catch (error) {
+    yield put(postsActions.deletePostFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(postsActions.deletePostAsync(response.data));
+}

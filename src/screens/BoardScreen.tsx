@@ -18,12 +18,15 @@ export default function BoardScreen(props: {
   const { navigation, route } = props;
   const { pk, name } = route.params;
 
-  const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
-    posts: state.postsReducers.posts,
-    isLoading: state.postsReducers.isLoading,
-    isSuccess: state.postsReducers.isSuccess,
-    postsError: state.postsReducers.error,
-  }));
+  const { posts, isLoading, isSuccess, postsError, reset } = useSelector(
+    (state) => ({
+      posts: state.postsReducers.posts,
+      isLoading: state.postsReducers.isLoading,
+      isSuccess: state.postsReducers.isSuccess,
+      postsError: state.postsReducers.error,
+      reset: state.postsReducers.reset,
+    })
+  );
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -36,7 +39,7 @@ export default function BoardScreen(props: {
         data: {},
       })
     );
-  }, []);
+  }, [reset]);
 
   React.useEffect(() => {
     console.log({ posts, postsError });
