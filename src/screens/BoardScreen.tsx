@@ -13,10 +13,14 @@ import { IRoute } from "../../types";
 import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
 export default function BoardScreen(props: {
   navigation: StackNavigationHelpers;
-  route: IRoute<{ pk: number; name: string }>;
+  route: IRoute<{ pk: number; name: string; page: number }>;
 }): React.ReactElement {
   const { navigation, route } = props;
-  const { pk, name } = route.params;
+  if (!route.params["pk"]) {
+    navigation.navigate("boards");
+  }
+  const { pk, name, page: pageString } = route.params;
+  const page = +pageString;
 
   const { posts, isLoading, isSuccess, postsError, reset } = useSelector(
     (state) => ({
@@ -36,7 +40,7 @@ export default function BoardScreen(props: {
     dispatch(
       postsActions.getPosts({
         pk,
-        data: {},
+        data: { start: (page - 1) * 10, end: page * 10 },
       })
     );
   }, [reset]);
@@ -47,6 +51,22 @@ export default function BoardScreen(props: {
 
   const onWriteClicked = () => {
     navigation.push("postWrite", { name, pk });
+  };
+
+  const prevColor = page <= 1 ? Paper.Colors.grey400 : Paper.Colors.blue400;
+  const nextColor =
+    posts.length < 10 ? Paper.Colors.grey400 : Paper.Colors.blue400;
+  const onPrev = () => {
+    if (page <= 1) {
+      return;
+    }
+    navigation.push("board", { name, pk, page: page - 1 });
+  };
+  const onNext = () => {
+    if (posts.length < 10) {
+      return;
+    }
+    navigation.push("board", { name, pk, page: page + 1 });
   };
 
   return (
@@ -69,6 +89,18 @@ export default function BoardScreen(props: {
       <Paper.Button mode="contained" onPress={onWriteClicked}>
         Write
       </Paper.Button>
+      <RN.View
+        style={{
+          flexDirection: "row",
+        }}
+      >
+        <Paper.Button mode="contained" color={prevColor} onPress={onPrev}>
+          Previous
+        </Paper.Button>
+        <Paper.Button mode="contained" color={nextColor} onPress={onNext}>
+          Next
+        </Paper.Button>
+      </RN.View>
     </Responsive>
   );
 }

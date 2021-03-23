@@ -13,7 +13,7 @@ export default function BoardComponent(props: {
 }): React.ReactElement {
   const { navigation, pk, name } = props;
   const goSelectedBoard = () => {
-    navigation.push("board", { pk, name });
+    navigation.push("board", { pk, name, page: 1 });
   };
   React.useEffect(() => {}, [pk]);
 

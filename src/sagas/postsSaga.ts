@@ -8,10 +8,12 @@ import client from "./client";
 
 export function* getPostsAsync(action) {
   const { pk, data } = action.payload;
+  const { start, end } = data;
   console.log({ pk, data });
   let response;
+  let query = `${url}/post?` + qs.stringify({ pk, ...data });
   try {
-    response = yield client.get(`${url}/post?pk=${pk}`, qs.stringify(data));
+    response = yield client.get(query);
   } catch (error) {
     yield put(postsActions.getPostsFailedAsync(error));
     return;
