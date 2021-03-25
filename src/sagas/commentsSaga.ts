@@ -18,3 +18,33 @@ export function* getCommentsAsync(action) {
   console.log({ response });
   yield put(commentsActions.getCommentsAsync(response.data.data));
 }
+
+export function* deleteCommentAsync(action) {
+  const { pk } = action.payload;
+  let response;
+  try {
+    response = yield client.delete(`${url}/reply?pk=${pk}`, {
+      data: qs.stringify({ pk }),
+    });
+  } catch (error) {
+    yield put(commentsActions.deleteCommentFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(commentsActions.deleteCommentAsync(response.data.data));
+}
+
+export function* deleteReCommentAsync(action) {
+  const { pk } = action.payload;
+  let response;
+  try {
+    response = yield client.delete(`${url}/answer_reply`, {
+      data: qs.stringify({ pk }),
+    });
+  } catch (error) {
+    yield put(commentsActions.deleteCommentFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(commentsActions.deleteCommentAsync(response.data.data));
+}

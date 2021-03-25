@@ -14,8 +14,9 @@ export default function CommentsComponent(props: {
   React.useEffect(() => {
     dispatch(commentsActions.getComments({ pk }));
   }, [pk]);
-  const { comments, isLoading, isSuccess, boardError } = useSelector(
+  const { loginData, comments, isLoading, isSuccess, boardError } = useSelector(
     (state) => ({
+      loginData: state.loginReducers.data,
       comments: state.commentsReducers.comments,
       isLoading: state.commentsReducers.isLoading,
       isSuccess: state.commentsReducers.isSuccess,
@@ -32,7 +33,7 @@ export default function CommentsComponent(props: {
         data={comments}
         keyExtractor={(item) => item.pk.toString()}
         renderItem={({ item, index, separators }) => (
-          <CommentComponent item={item} pk={item.pk} />
+          <CommentComponent item={item} pk={item.pk} loginData={loginData} />
         )}
       />
     </RN.View>
