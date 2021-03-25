@@ -6,7 +6,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import * as RN from "react-native";
-import px2vw from "../../utils/px2vw";
+import * as Paper from "react-native-paper";
 
 const ResponsiveBlock = styled.View`
   display: flex;
@@ -29,7 +29,7 @@ function Responsive(props: {
   const { children, ...rest } = props;
   // style, className, onClick, onMouseMove 등의 props를 사용할 수 있도록
   // ...rest를 사용하여 ResponsiveBlock에게 전달
-  const Block = RN.Platform.OS === "web" ? ResponsiveBlock : RN.View;
+  const Block = RN.Platform.OS === "web" ? ResponsiveBlock : RN.ScrollView;
   return <Block {...rest}>{children}</Block>;
 }
 
