@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { postsActions } from "../slices/postsSlice";
 import { IBoardParams, IRoute } from "../../types";
 import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
+import { commentsActions } from "../slices/commentsSlice";
+import { changeEditActions } from "../slices/changeEditSlice";
 
 export default function MutatePostScreen(props: {
   navigation: StackNavigationHelpers;
@@ -18,9 +20,23 @@ export default function MutatePostScreen(props: {
     } & IBoardParams
   >;
   dispatchAction: Function;
+  setIsChange?: Function;
+  isPost?: boolean;
+  pk?: number;
 }): React.ReactElement {
-  const { navigation, route, dispatchAction } = props;
-  const { pk, boardPk, boardName, boardPage } = route.params;
+  const {
+    navigation,
+    route,
+    dispatchAction,
+    isPost: isPostInitialValue,
+  } = props;
+  const isPost = isPostInitialValue ?? true;
+  let pk: number;
+  if (route?.params) {
+    pk = route?.params.pk!;
+  } else {
+    pk = props.pk!;
+  }
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
     isLoading: state.postsReducers.isLoading,
@@ -31,8 +47,8 @@ export default function MutatePostScreen(props: {
 
   const [content, setContent] = React.useState({
     pk,
-    title: route.params?.title ?? "",
-    content: route.params?.content ?? "",
+    title: route?.params?.title ?? "",
+    content: route?.params?.content ?? "",
   });
   const onChangeTitle = (text: string) => {
     setContent({ ...content, title: text });
@@ -43,34 +59,49 @@ export default function MutatePostScreen(props: {
 
   useEffectWithInitialCallback(
     () => {
-      dispatch(postsActions.resetStatus());
+      if (isPost) {
+        dispatch(postsActions.resetStatus());
+        return;
+      }
+      dispatch(commentsActions.resetStatus());
     },
     () => {
       if (!isSuccess || isLoading) {
         return;
       }
-      dispatch(postsActions.reset());
-      navigation.push("board", {
-        name: boardName,
-        pk: boardPk,
-        page: boardPage,
-      });
+      if (isPost) {
+        const { boardPk, boardName, boardPage } = route?.params;
+        dispatch(postsActions.reset());
+        navigation.push("board", {
+          name: boardName,
+          pk: boardPk,
+          page: boardPage,
+        });
+        return;
+      }
+      dispatch(commentsActions.reset());
+      dispatch(changeEditActions.off());
     },
     [isSuccess, isLoading]
   );
 
   const onWriteClicked = () => {
-    dispatch(dispatchAction(content));
+    const body = isPost ? content : { pk: pk, content: content.content };
+    dispatch(dispatchAction(body));
   };
 
+  const Root = isPost ? Responsive : RN.View;
+
   return (
-    <Responsive>
-      <Paper.TextInput
-        placeholder="&nbsp;제목을 입력하세요"
-        onChangeText={onChangeTitle}
-        value={content.title}
-        onSubmitEditing={(e) => onWriteClicked()}
-      />
+    <Root>
+      {isPost ? (
+        <Paper.TextInput
+          placeholder="&nbsp;제목을 입력하세요"
+          onChangeText={onChangeTitle}
+          value={content.title}
+          onSubmitEditing={(e) => onWriteClicked()}
+        />
+      ) : null}
       <RN.View>
         <Paper.TextInput
           placeholder="&nbsp;내용을 입력하세요"
@@ -79,9 +110,9 @@ export default function MutatePostScreen(props: {
           onSubmitEditing={(e) => onWriteClicked()}
         />
         <Paper.Button mode="contained" onPress={onWriteClicked}>
-          Write
+          {isPost ? "Write" : "Change"}
         </Paper.Button>
       </RN.View>
-    </Responsive>
+    </Root>
   );
 }

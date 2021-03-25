@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  comments: [],
+  responseData: {},
+  isLoading: true,
+  isSuccess: false,
+  error: null,
+  reset: false,
+};
+
 export const commentsSlice = createSlice({
   name: "comments",
-  initialState: {
-    comments: [],
-    responseData: {},
-    isLoading: true,
-    isSuccess: false,
-    error: null,
-    reset: false,
-  },
+  initialState,
   reducers: {
     getComments: (state, { payload }) => {
       console.log("댓글 목록 조회 액션 호출 - getComments");
@@ -34,6 +36,12 @@ export const commentsSlice = createSlice({
       return {
         ...state,
         reset: true,
+      };
+    },
+    resetStatus: (state) => {
+      return {
+        ...initialState,
+        comments: state.comments,
       };
     },
     getCommentsFailedAsync: (state, { payload: error }) => {

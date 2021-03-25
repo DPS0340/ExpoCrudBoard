@@ -21,6 +21,7 @@ export default function WriteCommentComponent(props: {
   }, [pk]);
   const onWrite = () => {
     dispatch(dispatchAction({ pk, content }));
+    setContent("");
   };
   return (
     <RN.View>
