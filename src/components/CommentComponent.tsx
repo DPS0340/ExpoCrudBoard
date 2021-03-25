@@ -8,6 +8,7 @@ import * as Paper from "react-native-paper";
 import DeleteCommentComponent from "./DeleteCommentComponent";
 import WriteCommentComponent from "./WriteCommentComponent";
 import { commentsActions } from "../slices/commentsSlice";
+import ChangeCommentComponent from "./ChangeCommentComponent";
 
 export default function CommentComponent(props: {
   pk: number;
@@ -28,6 +29,19 @@ export default function CommentComponent(props: {
       writeAt,
     });
   }, [pk, fields, item]);
+  const { reset } = useSelector((state) => ({
+    reset: state.commentsReducers.reset,
+  }));
+  const [isChange, setIsChange] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    if (reset) {
+      setIsChange(false);
+    }
+  }, [reset]);
+  const changeCommentComponent =
+    loginData.username === author?.fields?.username && isChange ? (
+      <ChangeCommentComponent pk={pk} isPost={false} />
+    ) : null;
   const deleteCommentComponent =
     loginData.username === author?.fields?.username ? (
       <DeleteCommentComponent pk={pk} />
@@ -37,6 +51,11 @@ export default function CommentComponent(props: {
       <Paper.Text>작성자: {author.fields.nickname}</Paper.Text>
       <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
       <Paper.Text>{content}</Paper.Text>
+      <Paper.Button onPress={() => setIsChange(!isChange)}>
+        Toggle Edit
+      </Paper.Button>
+      {changeCommentComponent}
+      {deleteCommentComponent}
       <RN.FlatList
         data={recomment_data}
         keyExtractor={(item) => item.pk.toString()}
@@ -49,7 +68,6 @@ export default function CommentComponent(props: {
         dispatchAction={commentsActions.writeReComment}
         componentName={"ReComment"}
       />
-      {deleteCommentComponent}
     </RN.View>
   );
 }

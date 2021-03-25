@@ -4,7 +4,7 @@ import * as RN from "react-native";
 import * as Paper from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { registerActions } from "../slices/registerSlice";
-import { IResponse } from "../types";
+import { IResponse } from "../../types";
 import styles from "../styles/common";
 import Responsive from "../components/ResponsiveComponent";
 

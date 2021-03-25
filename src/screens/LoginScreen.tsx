@@ -21,15 +21,19 @@ export default function LoginScreen(props: {
     loginError: state.loginReducers.error,
   }));
 
+  const onLoginSucceed = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.push("main");
+    }
+  };
+
   React.useEffect(() => {
     console.log({ isLogin });
     console.log({ loginError });
     if (isLogin) {
-      if (navigation.canGoBack()) {
-        navigation.goBack();
-      } else {
-        navigation.push("main");
-      }
+      onLoginSucceed();
     }
     if (loginError) {
       const responseString = loginError.request.response;
@@ -47,6 +51,10 @@ export default function LoginScreen(props: {
   const noArgumentError: string = "이메일 혹은 비밀번호가 입력되지 않았습니다.";
   const onLoginClick = (): void => {
     console.log({ username, password });
+    if (isLogin) {
+      onLoginSucceed();
+      return;
+    }
     if (!username || !password) {
       setError(noArgumentError);
       return;
