@@ -8,6 +8,7 @@ export const commentsSlice = createSlice({
     isLoading: true,
     isSuccess: false,
     error: null,
+    reset: false,
   },
   reducers: {
     getComments: (state, { payload }) => {
@@ -20,12 +21,19 @@ export const commentsSlice = createSlice({
         comments: data,
         isSuccess: true,
         isLoading: false,
+        reset: false,
       };
     },
     loading: (state) => {
       return {
         ...state,
         isLoading: true,
+      };
+    },
+    reset: (state) => {
+      return {
+        ...state,
+        reset: true,
       };
     },
     getCommentsFailedAsync: (state, { payload: error }) => {
@@ -35,6 +43,7 @@ export const commentsSlice = createSlice({
         isSuccess: false,
         isLoading: false,
         error: error,
+        reset: false,
       };
     },
     writeComment: (state, { payload }) => {
@@ -94,6 +103,46 @@ export const commentsSlice = createSlice({
         ...state,
         isSuccess: false,
         isLoading: false,
+      };
+    },
+    changeComment: (state, { payload }) => {
+      console.log("댓글 수정 액션 호출 - changeComment");
+    },
+    changeCommentAsync: (state, { payload: data }) => {
+      console.log("saga에서 put 액션 호출 - changeCommentAsync");
+      return {
+        ...state,
+        isSuccess: true,
+        isLoading: false,
+      };
+    },
+    changeCommentFailedAsync: (state, { payload: error }) => {
+      console.log("saga에서 put 액션 호출 실패 - changeCommentFailedAsync");
+      return {
+        ...state,
+        isSuccess: false,
+        isLoading: false,
+        error: error,
+      };
+    },
+    changeReComment: (state, { payload }) => {
+      console.log("대댓글 수정 액션 호출 - changeReComment");
+    },
+    changeReCommentAsync: (state, { payload: data }) => {
+      console.log("saga에서 put 액션 호출 - changeReCommentAsync");
+      return {
+        ...state,
+        isSuccess: true,
+        isLoading: false,
+      };
+    },
+    changeReCommentFailedAsync: (state, { payload: error }) => {
+      console.log("saga에서 put 액션 호출 실패 - changeReCommentFailedAsync");
+      return {
+        ...state,
+        isSuccess: false,
+        isLoading: false,
+        error: error,
       };
     },
     deleteReComment: (state, { payload: data }) => {

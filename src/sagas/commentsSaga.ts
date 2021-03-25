@@ -34,11 +34,39 @@ export function* deleteCommentAsync(action) {
   }
   console.log({ response });
   yield put(commentsActions.deleteCommentAsync(response.data.data));
+  yield put(commentsActions.reset());
+}
+
+export function* changeCommentAsync(action) {
+  const data = action.payload;
+  let response;
+  try {
+    response = yield client.put(`${url}/reply`, qs.stringify(data));
+  } catch (error) {
+    yield put(commentsActions.changeCommentFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(commentsActions.changeCommentAsync(response.data.data));
+  yield put(commentsActions.reset());
+}
+
+export function* changeReCommentAsync(action) {
+  const data = action.payload;
+  let response;
+  try {
+    response = yield client.put(`${url}/answer_reply`, qs.stringify(data));
+  } catch (error) {
+    yield put(commentsActions.changeCommentFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(commentsActions.changeCommentAsync(response.data.data));
+  yield put(commentsActions.reset());
 }
 
 export function* deleteReCommentAsync(action) {
   const { pk } = action.payload;
-  yield put(commentsActions.loading());
   let response;
   try {
     response = yield client.delete(`${url}/answer_reply`, {
@@ -50,6 +78,7 @@ export function* deleteReCommentAsync(action) {
   }
   console.log({ response });
   yield put(commentsActions.deleteCommentAsync(response.data.data));
+  yield put(commentsActions.reset());
 }
 
 export function* writeCommentAsync(action) {
@@ -63,6 +92,7 @@ export function* writeCommentAsync(action) {
   }
   console.log({ response });
   yield put(commentsActions.writeCommentAsync(response.data.data));
+  yield put(commentsActions.reset());
 }
 export function* writeRecommentAsync(action) {
   const data = action.payload;
@@ -75,4 +105,5 @@ export function* writeRecommentAsync(action) {
   }
   console.log({ response });
   yield put(commentsActions.writeReCommentAsync(response.data.data));
+  yield put(commentsActions.reset());
 }

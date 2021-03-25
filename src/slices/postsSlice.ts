@@ -25,6 +25,12 @@ export const postsSlice = createSlice({
         reset: true,
       };
     },
+    loading: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
     getPosts: (state, { payload }) => {
       console.log("글 목록 조회 액션 호출 - getPosts");
     },
@@ -50,7 +56,7 @@ export const postsSlice = createSlice({
       console.log("글 작성 액션 호출 - writePost");
     },
     writePostAsync: (state, { payload: data }) => {
-      console.log("saga에서 post 액션 호출 - writePostAsync");
+      console.log("saga에서 put 액션 호출 - writePostAsync");
       return {
         ...state,
         posts: data,
@@ -59,9 +65,29 @@ export const postsSlice = createSlice({
       };
     },
     writePostFailedAsync: (state, { payload: error }) => {
-      console.log("saga에서 post 액션 호출 실패 - writePostFailedAsync");
+      console.log("saga에서 put 액션 호출 실패 - writePostFailedAsync");
       return {
         ...state,
+        isLoading: false,
+        error: error,
+      };
+    },
+    changePost: (state, { payload }) => {
+      console.log("글 수정 액션 호출 - changePost");
+    },
+    changePostAsync: (state, { payload: data }) => {
+      console.log("saga에서 put 액션 호출 - changePostAsync");
+      return {
+        ...state,
+        isSuccess: true,
+        isLoading: false,
+      };
+    },
+    changePostFailedAsync: (state, { payload: error }) => {
+      console.log("saga에서 put 액션 호출 실패 - changePostFailedAsync");
+      return {
+        ...state,
+        isSuccess: false,
         isLoading: false,
         error: error,
       };
@@ -70,7 +96,7 @@ export const postsSlice = createSlice({
       console.log("글 작성 액션 호출 - deletePost");
     },
     deletePostAsync: (state, { payload: data }) => {
-      console.log("saga에서 post 액션 호출 - deletePostAsync");
+      console.log("saga에서 put 액션 호출 - deletePostAsync");
       return {
         ...state,
         responseData: data,
@@ -79,7 +105,7 @@ export const postsSlice = createSlice({
       };
     },
     deletePostFailedAsync: (state, { payload: error }) => {
-      console.log("saga에서 post 액션 호출 실패 - deletePostFailedAsync");
+      console.log("saga에서 put 액션 호출 실패 - deletePostFailedAsync");
       return {
         ...state,
         isLoading: false,

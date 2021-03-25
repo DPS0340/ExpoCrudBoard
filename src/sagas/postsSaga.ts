@@ -8,10 +8,9 @@ import client from "./client";
 
 export function* getPostsAsync(action) {
   const { pk, data } = action.payload;
-  const { start, end } = data;
   console.log({ pk, data });
   let response;
-  let query = `${url}/post?` + qs.stringify({ pk, ...data });
+  let query = `${url}/post?${qs.stringify({ pk, ...data })}`;
   try {
     response = yield client.get(query);
   } catch (error) {
@@ -20,6 +19,20 @@ export function* getPostsAsync(action) {
   }
   console.log({ response });
   yield put(postsActions.getPostsAsync(response.data.data));
+}
+
+export function* changePostAsync(action) {
+  const data = action.payload;
+  yield put(postsActions.loading());
+  let response;
+  try {
+    response = yield client.put(`${url}/post`, qs.stringify(data));
+  } catch (error) {
+    yield put(postsActions.changePostFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(postsActions.changePostAsync(response.data.data));
 }
 
 export function* writePostAsync(action) {

@@ -20,8 +20,9 @@ import LinkingPrefixes from "./LinkingPrefixes";
 import * as RN from "react-native";
 import Responsive from "./components/ResponsiveComponent";
 import { View } from "./components/Themed";
-import WritePostScreen from "./screens/WritePostScreen";
 import BackNavigatorComponent from "./components/BackNavigatorComponent";
+import ChangePostScreen from "./screens/ChangePostScreen";
+import WritePostScreen from "./screens/WritePostScreen";
 
 const Stack = createStackNavigator();
 const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE";
@@ -129,6 +130,19 @@ export default function InsideApp() {
               <CheckLoginComponent navigation={navigation} />
             ),
             title: "Post Write",
+          })}
+        />
+        <Stack.Screen
+          name="postChange"
+          component={ChangePostScreen}
+          options={({ navigation, route }) => ({
+            headerLeft: (props) => (
+              <BackNavigatorComponent navigation={navigation} />
+            ),
+            headerRight: (props) => (
+              <CheckLoginComponent navigation={navigation} />
+            ),
+            title: "Post Change",
           })}
         />
       </Stack.Navigator>

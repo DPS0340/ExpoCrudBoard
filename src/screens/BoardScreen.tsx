@@ -35,25 +35,29 @@ export default function BoardScreen(props: {
   );
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    navigation.setOptions({
-      title: `${name} 게시판`,
-    });
+  const getPosts = () => {
     dispatch(
       postsActions.getPosts({
         pk,
         data: { start: (page - 1) * 10, end: page * 10 },
       })
     );
-  }, [pk, reset]);
+  };
 
   React.useEffect(() => {
-    console.log({ posts, postsError });
-  }, [posts, postsError]);
+    navigation.setOptions({
+      title: `${name} 게시판`,
+    });
+    getPosts();
+  }, [pk, reset]);
 
   const onWriteClicked = () => {
     navigation.push("postWrite", { name, pk });
   };
+
+  if (!posts) {
+    return <></>;
+  }
 
   const prevColor = page <= 1 ? Paper.Colors.grey400 : Paper.Colors.blue400;
   const nextColor =
