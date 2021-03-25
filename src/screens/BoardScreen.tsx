@@ -48,7 +48,7 @@ export default function BoardScreen(props: {
       title: `${name} 게시판`,
     });
     getPosts();
-  }, [pk, reset]);
+  }, [pk, reset, page]);
 
   const onWriteClicked = () => {
     navigation.push("postWrite", {
