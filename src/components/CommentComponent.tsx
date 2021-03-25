@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import ReCommentComponent from "./ReCommentComponent";
 import * as Paper from "react-native-paper";
 import DeleteCommentComponent from "./DeleteCommentComponent";
-import DeleteCommentComponent from "./DeleteCommentComponent";
 
 export default function CommentComponent(props: {
   pk: number;
