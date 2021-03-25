@@ -1,19 +1,19 @@
 import styles from "../styles/common";
-import { Text, View } from "./Themed";
+import * as Paper from "react-native-paper";
 import * as RN from "react-native";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommentComponent from "./CommentComponent";
 import { commentsActions } from "../slices/commentsSlice";
+import WriteCommentComponent from "./WriteCommentComponent";
+import { loginActions } from "../slices/loginSlice";
+import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
 
 export default function CommentsComponent(props: {
   pk: number;
 }): React.ReactElement {
   const { pk } = props;
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(commentsActions.getComments({ pk }));
-  }, [pk]);
   const { loginData, comments, isLoading, isSuccess, boardError } = useSelector(
     (state) => ({
       loginData: state.loginReducers.data,
@@ -22,6 +22,17 @@ export default function CommentsComponent(props: {
       isSuccess: state.commentsReducers.isSuccess,
       boardError: state.commentsReducers.error,
     })
+  );
+  useEffectWithInitialCallback(
+    () => {
+      dispatch(commentsActions.getComments({ pk }));
+    },
+    () => {
+      if (!isLoading) {
+        dispatch(commentsActions.getComments({ pk }));
+      }
+    },
+    [pk, isLoading]
   );
   React.useEffect(() => {
     console.log({ comments, isLoading, isSuccess, boardError });
@@ -35,6 +46,11 @@ export default function CommentsComponent(props: {
         renderItem={({ item, index, separators }) => (
           <CommentComponent item={item} pk={item.pk} loginData={loginData} />
         )}
+      />
+      <WriteCommentComponent
+        pk={pk}
+        dispatchAction={commentsActions.writeComment}
+        componentName={"ReComment"}
       />
     </RN.View>
   );
