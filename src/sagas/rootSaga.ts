@@ -12,13 +12,21 @@ import {
   deleteCommentAsync,
   deleteReCommentAsync,
   getCommentsAsync,
+  writeCommentAsync,
+  writeRecommentAsync,
 } from "./commentsSaga";
 
 const { getPosts, writePost, deletePost } = postsActions;
 const { getBoards } = boardsActions;
 const { login, checkLogin, logout } = loginActions;
 const { register } = registerActions;
-const { getComments, deleteComment, deleteReComment } = commentsActions;
+const {
+  getComments,
+  deleteComment,
+  deleteReComment,
+  writeComment,
+  writeReComment,
+} = commentsActions;
 
 export default function* rootWatcher() {
   yield takeLatest(login.type, loginAsync);
@@ -29,6 +37,8 @@ export default function* rootWatcher() {
   yield takeLatest(deletePost.type, deletePostAsync);
   yield takeLatest(deleteComment.type, deleteCommentAsync);
   yield takeLatest(deleteReComment.type, deleteReCommentAsync);
+  yield takeLatest(writeComment.type, writeCommentAsync);
+  yield takeLatest(writeReComment.type, writeRecommentAsync);
   yield takeEvery(getBoards.type, getBoardsAsync);
   yield takeEvery(getPosts.type, getPostsAsync);
   yield takeEvery(getComments.type, getCommentsAsync);

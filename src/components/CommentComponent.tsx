@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import ReCommentComponent from "./ReCommentComponent";
 import * as Paper from "react-native-paper";
 import DeleteCommentComponent from "./DeleteCommentComponent";
+import WriteCommentComponent from "./WriteCommentComponent";
+import { commentsActions } from "../slices/commentsSlice";
 
 export default function CommentComponent(props: {
   pk: number;
@@ -41,6 +43,11 @@ export default function CommentComponent(props: {
         renderItem={({ item, index, separators }) => (
           <ReCommentComponent item={item} pk={item.pk} loginData={loginData} />
         )}
+      />
+      <WriteCommentComponent
+        pk={pk}
+        dispatchAction={commentsActions.writeReComment}
+        componentName={"Comment"}
       />
       {deleteCommentComponent}
     </RN.View>

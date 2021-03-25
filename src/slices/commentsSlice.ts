@@ -8,17 +8,10 @@ export const commentsSlice = createSlice({
     isLoading: true,
     isSuccess: false,
     error: null,
-    reset: false,
   },
   reducers: {
     getComments: (state, { payload }) => {
-      console.log("게시판 목록 조회 액션 호출 - getComments");
-    },
-    reset: (state) => {
-      return {
-        ...state,
-        reset: true,
-      };
+      console.log("댓글 목록 조회 액션 호출 - getComments");
     },
     getCommentsAsync: (state, { payload: data }) => {
       console.log("saga에서 put 액션 호출 - getCommentsAsync");
@@ -29,10 +22,57 @@ export const commentsSlice = createSlice({
         isLoading: false,
       };
     },
+    loading: (state) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
     getCommentsFailedAsync: (state, { payload: error }) => {
       console.log("saga에서 put 액션 호출 - getRoomsFailedAsync");
       return {
         ...state,
+        isSuccess: false,
+        isLoading: false,
+        error: error,
+      };
+    },
+    writeComment: (state, { payload }) => {
+      console.log("댓글 작성 액션 호출 - writeComment");
+    },
+    writeCommentAsync: (state, { payload: data }) => {
+      console.log("saga에서 put 액션 호출 - writeCommentAsync");
+      return {
+        ...state,
+        isSuccess: true,
+        isLoading: false,
+      };
+    },
+    writeCommentFailedAsync: (state, { payload: error }) => {
+      console.log("saga에서 put 액션 호출 - writeCommentFailedAsync");
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: false,
+        error: error,
+      };
+    },
+    writeReComment: (state, { payload }) => {
+      console.log("댓글 작성 액션 호출 - writeReComment");
+    },
+    writeReCommentAsync: (state, { payload: data }) => {
+      console.log("saga에서 put 액션 호출 - writeReCommentAsync");
+      return {
+        ...state,
+        isSuccess: true,
+        isLoading: false,
+      };
+    },
+    writeReCommentFailedAsync: (state, { payload: error }) => {
+      console.log("saga에서 put 액션 호출 - writeReCommentFailedAsync");
+      return {
+        ...state,
+        isSuccess: false,
         isLoading: false,
         error: error,
       };
