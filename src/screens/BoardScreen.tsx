@@ -88,9 +88,7 @@ export default function BoardScreen(props: {
           />
         )}
       />
-      <Paper.Button mode="contained" onPress={onWriteClicked}>
-        Write
-      </Paper.Button>
+      <Paper.Button onPress={onWriteClicked}>Write</Paper.Button>
       <RN.View
         style={{
           flexDirection: "row",

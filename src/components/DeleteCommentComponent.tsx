@@ -13,9 +13,5 @@ export default function DeleteCommentComponent(props: {
   const onClick = () => {
     dispatch(commentsActions.deleteComment({ pk }));
   };
-  return (
-    <Paper.Button mode="contained" onPress={onClick}>
-      Delete Comment
-    </Paper.Button>
-  );
+  return <Paper.Button onPress={onClick}>Delete Comment</Paper.Button>;
 }
