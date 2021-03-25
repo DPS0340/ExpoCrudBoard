@@ -23,11 +23,11 @@ export default function WritePostScreen(props: {
   const dispatch = useDispatch();
 
   const [content, setContent] = React.useState({ pk, title: "", content: "" });
-  const onChangeTitle = (e: any) => {
-    setContent({ ...content, title: e.target.value });
+  const onChangeTitle = (text: string) => {
+    setContent({ ...content, title: text });
   };
-  const onChangeContent = (e: any) => {
-    setContent({ ...content, content: e.target.value });
+  const onChangeContent = (text: string) => {
+    setContent({ ...content, content: text });
   };
 
   useEffectWithInitialCallback(
@@ -51,14 +51,14 @@ export default function WritePostScreen(props: {
     <Responsive>
       <Paper.TextInput
         placeholder="&nbsp;제목을 입력하세요"
-        onChange={onChangeTitle}
+        onChangeText={onChangeTitle}
         value={content.title}
         onSubmitEditing={(e) => onWriteClicked()}
       />
       <RN.View>
         <Paper.TextInput
           placeholder="&nbsp;내용을 입력하세요"
-          onChange={onChangeContent}
+          onChangeText={onChangeContent}
           value={content.content}
           onSubmitEditing={(e) => onWriteClicked()}
         />
