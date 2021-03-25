@@ -47,7 +47,7 @@ export default function CommentComponent(props: {
       <WriteCommentComponent
         pk={pk}
         dispatchAction={commentsActions.writeReComment}
-        componentName={"Comment"}
+        componentName={"ReComment"}
       />
       {deleteCommentComponent}
     </RN.View>
