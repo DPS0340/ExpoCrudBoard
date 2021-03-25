@@ -8,10 +8,9 @@ import client from "./client";
 
 export function* getPostsAsync(action) {
   const { pk, data } = action.payload;
-  const { start, end } = data;
   console.log({ pk, data });
   let response;
-  let query = `${url}/post?` + qs.stringify({ pk, ...data });
+  let query = `${url}/post?${qs.stringify({ pk, ...data })}`;
   try {
     response = yield client.get(query);
   } catch (error) {

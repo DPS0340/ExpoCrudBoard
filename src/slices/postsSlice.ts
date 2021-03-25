@@ -19,6 +19,12 @@ export const postsSlice = createSlice({
         posts: state.posts,
       };
     },
+    reset: (state) => {
+      return {
+        ...state,
+        reset: true,
+      };
+    },
     loading: (state) => {
       return {
         ...state,

@@ -47,9 +47,5 @@ export default function DeletePostComponent(props: {
     },
     [isLoading, isSuccess]
   );
-  return (
-    <Paper.Button mode="contained" onPress={onClick}>
-      Delete Post
-    </Paper.Button>
-  );
+  return <Paper.Button onPress={onClick}>Delete Post</Paper.Button>;
 }

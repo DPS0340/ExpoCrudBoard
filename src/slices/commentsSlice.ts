@@ -8,6 +8,7 @@ export const commentsSlice = createSlice({
     isLoading: true,
     isSuccess: false,
     error: null,
+    reset: false,
   },
   reducers: {
     getComments: (state, { payload }) => {
@@ -20,12 +21,19 @@ export const commentsSlice = createSlice({
         comments: data,
         isSuccess: true,
         isLoading: false,
+        reset: false,
       };
     },
     loading: (state) => {
       return {
         ...state,
         isLoading: true,
+      };
+    },
+    reset: (state) => {
+      return {
+        ...state,
+        reset: true,
       };
     },
     getCommentsFailedAsync: (state, { payload: error }) => {
@@ -35,6 +43,7 @@ export const commentsSlice = createSlice({
         isSuccess: false,
         isLoading: false,
         error: error,
+        reset: false,
       };
     },
     writeComment: (state, { payload }) => {

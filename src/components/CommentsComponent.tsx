@@ -14,26 +14,24 @@ export default function CommentsComponent(props: {
 }): React.ReactElement {
   const { pk } = props;
   const dispatch = useDispatch();
-  const { loginData, comments, isLoading, isSuccess, boardError } = useSelector(
-    (state) => ({
-      loginData: state.loginReducers.data,
-      comments: state.commentsReducers.comments,
-      isLoading: state.commentsReducers.isLoading,
-      isSuccess: state.commentsReducers.isSuccess,
-      boardError: state.commentsReducers.error,
-    })
-  );
-  useEffectWithInitialCallback(
-    () => {
-      dispatch(commentsActions.getComments({ pk }));
-    },
-    () => {
-      if (!isLoading) {
-        dispatch(commentsActions.getComments({ pk }));
-      }
-    },
-    [pk, isLoading]
-  );
+  const {
+    loginData,
+    comments,
+    reset,
+    isLoading,
+    isSuccess,
+    boardError,
+  } = useSelector((state) => ({
+    loginData: state.loginReducers.data,
+    comments: state.commentsReducers.comments,
+    reset: state.commentsReducers.reset,
+    isLoading: state.commentsReducers.isLoading,
+    isSuccess: state.commentsReducers.isSuccess,
+    boardError: state.commentsReducers.error,
+  }));
+  React.useEffect(() => {
+    dispatch(commentsActions.getComments({ pk }));
+  }, [pk, reset]);
   React.useEffect(() => {
     console.log({ comments, isLoading, isSuccess, boardError });
   }, [comments, isLoading, isSuccess, boardError]);

@@ -10,9 +10,12 @@ import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback"
 
 export default function MutatePostScreen(props: {
   navigation: StackNavigationHelpers;
-  route: IRoute<{ pk: number; name: string }>;
-  title?: string;
-  content?: string;
+  route: IRoute<{
+    pk: number;
+    name: string;
+    title?: string;
+    content?: string;
+  }>;
   dispatchAction: Function;
 }): React.ReactElement {
   const { navigation, route, dispatchAction } = props;
@@ -27,8 +30,8 @@ export default function MutatePostScreen(props: {
 
   const [content, setContent] = React.useState({
     pk,
-    title: props.title ?? "",
-    content: props.content ?? "",
+    title: route.params?.title ?? "",
+    content: route.params?.content ?? "",
   });
   const onChangeTitle = (text: string) => {
     setContent({ ...content, title: text });
@@ -37,18 +40,13 @@ export default function MutatePostScreen(props: {
     setContent({ ...content, content: text });
   };
 
-  useEffectWithInitialCallback(
-    () => {
-      dispatch(postsActions.resetStatus());
-    },
-    () => {
-      if (!isSuccess || isLoading) {
-        return;
-      }
-      navigation.push("board", { name, pk });
-    },
-    [isSuccess, isLoading]
-  );
+  React.useEffect(() => {
+    if (!isSuccess || isLoading) {
+      return;
+    }
+    dispatch(postsActions.reset());
+    navigation.push("board", { name, pk, page: 1 });
+  }, [isSuccess, isLoading]);
 
   const onWriteClicked = () => {
     dispatch(dispatchAction(content));
