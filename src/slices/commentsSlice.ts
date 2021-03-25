@@ -4,13 +4,21 @@ export const commentsSlice = createSlice({
   name: "comments",
   initialState: {
     comments: [],
+    responseData: {},
     isLoading: true,
     isSuccess: false,
     error: null,
+    reset: false,
   },
   reducers: {
     getComments: (state, { payload }) => {
       console.log("게시판 목록 조회 액션 호출 - getComments");
+    },
+    reset: (state) => {
+      return {
+        ...state,
+        reset: true,
+      };
     },
     getCommentsAsync: (state, { payload: data }) => {
       console.log("saga에서 put 액션 호출 - getCommentsAsync");
