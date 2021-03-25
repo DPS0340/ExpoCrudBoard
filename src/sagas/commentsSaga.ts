@@ -36,6 +36,34 @@ export function* deleteCommentAsync(action) {
   yield put(commentsActions.deleteCommentAsync(response.data.data));
 }
 
+export function* changeCommentAsync(action) {
+  const data = action.payload;
+  yield put(commentsActions.loading());
+  let response;
+  try {
+    response = yield client.put(`${url}/reply`, qs.stringify(data));
+  } catch (error) {
+    yield put(commentsActions.changeCommentFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(commentsActions.changeCommentAsync(response.data.data));
+}
+
+export function* changeReCommentAsync(action) {
+  const data = action.payload;
+  yield put(commentsActions.loading());
+  let response;
+  try {
+    response = yield client.put(`${url}/answer_reply`, qs.stringify(data));
+  } catch (error) {
+    yield put(commentsActions.changeCommentFailedAsync(error));
+    return;
+  }
+  console.log({ response });
+  yield put(commentsActions.changeCommentAsync(response.data.data));
+}
+
 export function* deleteReCommentAsync(action) {
   const { pk } = action.payload;
   yield put(commentsActions.loading());

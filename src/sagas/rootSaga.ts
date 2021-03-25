@@ -5,10 +5,17 @@ import { registerActions } from "../slices/registerSlice";
 import { registerAsync } from "./registerSaga";
 import { getBoardsAsync } from "./boardsSaga";
 import { checkLoginAsync, loginAsync, logoutAsync } from "./loginSaga";
-import { deletePostAsync, getPostsAsync, writePostAsync } from "./postsSaga";
+import {
+  changePostAsync,
+  deletePostAsync,
+  getPostsAsync,
+  writePostAsync,
+} from "./postsSaga";
 import { postsActions } from "../slices/postsSlice";
 import { commentsActions } from "../slices/commentsSlice";
 import {
+  changeCommentAsync,
+  changeReCommentAsync,
   deleteCommentAsync,
   deleteReCommentAsync,
   getCommentsAsync,
@@ -16,7 +23,7 @@ import {
   writeRecommentAsync,
 } from "./commentsSaga";
 
-const { getPosts, writePost, deletePost } = postsActions;
+const { getPosts, writePost, deletePost, changePost } = postsActions;
 const { getBoards } = boardsActions;
 const { login, checkLogin, logout } = loginActions;
 const { register } = registerActions;
@@ -26,6 +33,8 @@ const {
   deleteReComment,
   writeComment,
   writeReComment,
+  changeComment,
+  changeReComment,
 } = commentsActions;
 
 export default function* rootWatcher() {
@@ -39,6 +48,9 @@ export default function* rootWatcher() {
   yield takeLatest(deleteReComment.type, deleteReCommentAsync);
   yield takeLatest(writeComment.type, writeCommentAsync);
   yield takeLatest(writeReComment.type, writeRecommentAsync);
+  yield takeLatest(changePost.type, changePostAsync);
+  yield takeLatest(changeComment.type, changeCommentAsync);
+  yield takeLatest(changeReComment.type, changeReCommentAsync);
   yield takeEvery(getBoards.type, getBoardsAsync);
   yield takeEvery(getPosts.type, getPostsAsync);
   yield takeEvery(getComments.type, getCommentsAsync);
