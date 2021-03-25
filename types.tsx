@@ -51,6 +51,12 @@ export interface IPostParams extends IPostParamsBase {
   writeAt: Date;
 }
 
+export interface IBoardParams {
+  boardPk: number;
+  boardName: string;
+  boardPage: number;
+}
+
 export interface IPostPreviewParams extends IPostParamsBase {
   navigation: StackNavigationHelpers;
   writeAtDT: DateTime;

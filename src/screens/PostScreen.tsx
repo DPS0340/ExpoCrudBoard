@@ -17,7 +17,17 @@ export default function PostScreen(props: {
   route: IRoute<IPostParams>;
 }): React.ReactElement {
   const { navigation, route } = props;
-  const { pk, author, board, content, title, writeAt } = route.params;
+  const {
+    pk,
+    author,
+    board,
+    boardPk,
+    boardName,
+    boardPage,
+    content,
+    title,
+    writeAt,
+  } = route.params;
   const authorName = author?.fields?.nickname ?? "";
   const { loginData } = useSelector((state) => ({
     loginData: state.loginReducers.data,
@@ -40,6 +50,9 @@ export default function PostScreen(props: {
         name={loginData.username}
         title={title}
         content={content}
+        boardName={boardName}
+        boardPk={boardPk}
+        boardPage={boardPage}
       />
     ) : null;
   return (

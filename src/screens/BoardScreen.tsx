@@ -15,14 +15,13 @@ export default function BoardScreen(props: {
   navigation: StackNavigationHelpers;
   route: IRoute<{ pk: number; name: string; page: number }>;
 }): React.ReactElement {
-  console.log(props);
   const { navigation, route } = props;
   if (!route.params) {
     navigation.navigate("boards");
     return <></>;
   }
   const { pk, name, page: pageString } = route.params!;
-  const page = +pageString;
+  const page = isNaN(pageString) ? 1 : +pageString;
 
   const { posts, isLoading, isSuccess, postsError, reset } = useSelector(
     (state) => ({
@@ -52,7 +51,12 @@ export default function BoardScreen(props: {
   }, [pk, reset]);
 
   const onWriteClicked = () => {
-    navigation.push("postWrite", { name, pk });
+    navigation.push("postWrite", {
+      pk,
+      boardName: name,
+      boardPk: pk,
+      boardPage: page,
+    });
   };
 
   if (!posts) {
@@ -84,11 +88,14 @@ export default function BoardScreen(props: {
           <PostPreviewComponent
             navigation={navigation}
             pk={item.pk}
-            author={item.fields.author}
             board={item.fields.board}
+            author={item.fields.author}
             content={item.fields.content}
             title={item.fields.title}
             writeAtDT={item.fields.writeAt}
+            boardPk={pk}
+            boardName={name}
+            boardPage={page}
           />
         )}
       />
