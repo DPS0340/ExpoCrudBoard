@@ -8,17 +8,37 @@ import HTML from "react-native-render-html";
 import { useDispatch, useSelector } from "react-redux";
 import { postsActions, postsReducers } from "../slices/postsSlice";
 import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
+import { IBoardParams } from "../../types";
 
-export default function ChangePostComponent(props: {
-  navigation: StackNavigationHelpers;
-  pk: number;
-  name: string;
-  title: string;
-  content: string;
-}): React.ReactElement {
-  const { navigation, pk, name, title, content } = props;
+export default function ChangePostComponent(
+  props: {
+    navigation: StackNavigationHelpers;
+    pk: number;
+    name: string;
+    title: string;
+    content: string;
+  } & IBoardParams
+): React.ReactElement {
+  const {
+    navigation,
+    pk,
+    name,
+    title,
+    content,
+    boardPk,
+    boardName,
+    boardPage,
+  } = props;
   const onClick = () => {
-    navigation.push("postChange", { pk, name, title, content });
+    navigation.push("postChange", {
+      pk,
+      name,
+      title,
+      content,
+      boardPk,
+      boardName,
+      boardPage,
+    });
   };
   return <Paper.Button onPress={onClick}>Change Post</Paper.Button>;
 }

@@ -5,21 +5,22 @@ import * as RN from "react-native";
 import * as Paper from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { postsActions } from "../slices/postsSlice";
-import { IRoute } from "../../types";
+import { IBoardParams, IRoute } from "../../types";
 import useEffectWithInitialCallback from "../hooks/useEffectWithInitialCallback";
 
 export default function MutatePostScreen(props: {
   navigation: StackNavigationHelpers;
-  route: IRoute<{
-    pk: number;
-    name: string;
-    title?: string;
-    content?: string;
-  }>;
+  route: IRoute<
+    {
+      pk?: number;
+      title?: string;
+      content?: string;
+    } & IBoardParams
+  >;
   dispatchAction: Function;
 }): React.ReactElement {
   const { navigation, route, dispatchAction } = props;
-  const { pk, name } = route.params;
+  const { pk, boardPk, boardName, boardPage } = route.params;
   const { posts, isLoading, isSuccess, postsError } = useSelector((state) => ({
     posts: state.postsReducers.posts,
     isLoading: state.postsReducers.isLoading,
@@ -40,13 +41,23 @@ export default function MutatePostScreen(props: {
     setContent({ ...content, content: text });
   };
 
-  React.useEffect(() => {
-    if (!isSuccess || isLoading) {
-      return;
-    }
-    dispatch(postsActions.reset());
-    navigation.push("board", { name, pk, page: 1 });
-  }, [isSuccess, isLoading]);
+  useEffectWithInitialCallback(
+    () => {
+      dispatch(postsActions.resetStatus());
+    },
+    () => {
+      if (!isSuccess || isLoading) {
+        return;
+      }
+      dispatch(postsActions.reset());
+      navigation.push("board", {
+        name: boardName,
+        pk: boardPk,
+        page: boardPage,
+      });
+    },
+    [isSuccess, isLoading]
+  );
 
   const onWriteClicked = () => {
     dispatch(dispatchAction(content));

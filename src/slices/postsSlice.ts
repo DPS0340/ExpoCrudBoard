@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   posts: [],
   responseData: [],
-  isLoading: true,
+  isLoading: false,
   isSuccess: false,
   error: null,
   reset: false,
@@ -50,6 +50,7 @@ export const postsSlice = createSlice({
         ...state,
         isLoading: false,
         error: error,
+        reset: false,
       };
     },
     writePost: (state, { payload }) => {

@@ -2,17 +2,25 @@ import styles from "../styles/common";
 import { Text, View } from "./Themed";
 import * as Paper from "react-native-paper";
 import * as React from "react";
-import { IPostPreviewParams } from "../../types";
+import { IBoardParams, IPostParams, IPostPreviewParams } from "../../types";
 
 export default function PostPreviewComponent(
-  props: IPostPreviewParams
+  props: IPostPreviewParams & IBoardParams
 ): React.ReactElement {
-  const { navigation, pk, author, board, content, title, writeAtDT } = props;
+  const {
+    navigation,
+    pk,
+    author,
+    board,
+    content,
+    title,
+    writeAtDT,
+    boardName,
+    boardPk,
+    boardPage,
+  } = props;
   const writeAt = new Date(Date.parse(writeAtDT));
   const authorName = author.fields.nickname;
-  React.useEffect(() => {
-    console.log({ pk, author, board, content, title, writeAtDT });
-  }, [pk, author, board, content, title, writeAtDT]);
   const onClick = () => {
     navigation.push("post", {
       pk,
@@ -21,6 +29,9 @@ export default function PostPreviewComponent(
       content,
       title,
       writeAt,
+      boardName,
+      boardPage,
+      boardPk,
     });
   };
   return (
