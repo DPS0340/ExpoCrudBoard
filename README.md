@@ -3,7 +3,7 @@
 
 > Yet Another React Native / Expo Board
 
-[demo](https://expocrudboard.netlify.app)
+[demo](https://d1nz4ety4wohz9.cloudfront.net)
 
 ## Install
 
