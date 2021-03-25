@@ -25,7 +25,7 @@ export default function PostPreviewComponent(
   };
   return (
     <View style={styles.container}>
-      <Paper.Button mode="contained" onPress={onClick}>
+      <Paper.Button onPress={onClick}>
         {authorName}: {title}
       </Paper.Button>
     </View>
