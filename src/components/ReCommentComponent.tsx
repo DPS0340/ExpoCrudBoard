@@ -36,12 +36,18 @@ export default function ReCommentComponent(props: {
     }
   }, [reset]);
   const deleteReCommentComponent =
-    loginData.username === author?.fields?.username ? (
+    loginData?.username === author?.fields?.username ? (
       <DeleteReCommentComponent pk={pk} />
     ) : null;
   const changeReCommentComponent =
-    loginData.username === author?.fields?.username && isChange ? (
+    loginData?.username === author?.fields?.username && isChange ? (
       <ChangeReCommentComponent pk={pk} isPost={false} />
+    ) : null;
+  const toggleComponent =
+    loginData?.username === author?.fields?.username ? (
+      <Paper.Button onPress={() => setIsChange(!isChange)}>
+        Toggle Edit
+      </Paper.Button>
     ) : null;
   return (
     <RN.View>
@@ -50,9 +56,7 @@ export default function ReCommentComponent(props: {
         <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
         <Paper.Text>{content}</Paper.Text>
       </RN.View>
-      <Paper.Button onPress={() => setIsChange(!isChange)}>
-        Toggle Edit
-      </Paper.Button>
+      {toggleComponent}
       {changeReCommentComponent}
       {deleteReCommentComponent}
     </RN.View>

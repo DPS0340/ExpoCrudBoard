@@ -22,27 +22,29 @@ export default function CheckLoginComponent(props: {
   const logout = () => {
     dispatch(loginActions.logout());
   };
-  const goLoginIfNotLogined = () => {
-    if (!isLogin && route.name !== "login" && route.name !== "register") {
-      navigation.navigate("login");
-    }
-  };
-  useEffectWithInitialCallback(
-    () => {
-      dispatch(loginActions.checkLogin());
-      goLoginIfNotLogined();
-    },
-    () => {
-      goLoginIfNotLogined();
-    },
-    [isLogin]
-  );
+  React.useEffect(() => {
+    dispatch(loginActions.checkLogin());
+  }, [isLogin]);
 
   const onLogoutClick = () => {
     logout();
   };
 
-  const LogoutButton = !isLogin ? null : (
+  const login = () => {
+    navigation.push("login");
+  };
+
+  const onLoginClick = () => {
+    login();
+  };
+
+  const LogoutButton = !isLogin ? (
+    route.name !== "login" ? (
+      <Paper.Button mode="contained" onPress={onLoginClick}>
+        Login
+      </Paper.Button>
+    ) : null
+  ) : (
     <Paper.Button mode="contained" onPress={onLogoutClick}>
       Logout
     </Paper.Button>

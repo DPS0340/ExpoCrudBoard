@@ -32,7 +32,7 @@ export const loginSlice = createSlice({
       return {
         ...state,
         isLogin: false,
-        data,
+        data: {},
       };
     },
     loginAsync: (state, { payload: data }) => {

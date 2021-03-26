@@ -29,9 +29,13 @@ export default function CommentComponent(props: {
       writeAt,
     });
   }, [pk, fields, item]);
-  const { reset } = useSelector((state) => ({
+  const { isLogin, reset } = useSelector((state) => ({
+    isLogin: state.loginReducers.isLogin,
     reset: state.commentsReducers.reset,
   }));
+  React.useEffect(() => {
+    console.log({ isLogin });
+  }, [isLogin]);
   const [isChange, setIsChange] = React.useState<boolean>(false);
   React.useEffect(() => {
     if (reset) {
@@ -39,21 +43,25 @@ export default function CommentComponent(props: {
     }
   }, [reset]);
   const changeCommentComponent =
-    loginData.username === author?.fields?.username && isChange ? (
+    loginData?.username === author?.fields?.username && isChange ? (
       <ChangeCommentComponent pk={pk} isPost={false} />
     ) : null;
   const deleteCommentComponent =
-    loginData.username === author?.fields?.username ? (
+    loginData?.username === author?.fields?.username ? (
       <DeleteCommentComponent pk={pk} />
+    ) : null;
+  const toggleComponent =
+    loginData?.username === author?.fields?.username ? (
+      <Paper.Button onPress={() => setIsChange(!isChange)}>
+        Toggle Edit
+      </Paper.Button>
     ) : null;
   return (
     <RN.View>
       <Paper.Text>작성자: {author.fields.nickname}</Paper.Text>
       <Paper.Text>작성 시각: {writeAt.toLocaleString()}</Paper.Text>
       <Paper.Text>{content}</Paper.Text>
-      <Paper.Button onPress={() => setIsChange(!isChange)}>
-        Toggle Edit
-      </Paper.Button>
+      {toggleComponent}
       {changeCommentComponent}
       {deleteCommentComponent}
       <RN.FlatList
@@ -63,11 +71,13 @@ export default function CommentComponent(props: {
           <ReCommentComponent item={item} pk={item.pk} loginData={loginData} />
         )}
       />
-      <WriteCommentComponent
-        pk={pk}
-        dispatchAction={commentsActions.writeReComment}
-        componentName={"ReComment"}
-      />
+      {isLogin ? (
+        <WriteCommentComponent
+          pk={pk}
+          dispatchAction={commentsActions.writeReComment}
+          componentName={"ReComment"}
+        />
+      ) : null}
     </RN.View>
   );
 }

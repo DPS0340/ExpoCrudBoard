@@ -29,7 +29,8 @@ export default function PostScreen(props: {
     writeAt,
   } = route.params;
   const authorName = author?.fields?.nickname ?? "";
-  const { loginData } = useSelector((state) => ({
+  const { isLogin, loginData } = useSelector((state) => ({
+    isLogin: state.loginReducers.isLogin,
     loginData: state.loginReducers.data,
   }));
   React.useEffect(() => {
@@ -39,11 +40,11 @@ export default function PostScreen(props: {
     title,
   });
   const deletePostComponent =
-    loginData.username === author?.fields?.username ? (
+    loginData?.username === author?.fields?.username ? (
       <DeletePostComponent navigation={navigation} pk={pk} />
     ) : null;
   const changePostScreen =
-    loginData.username === author?.fields?.username ? (
+    loginData?.username === author?.fields?.username ? (
       <ChangePostComponent
         navigation={navigation}
         pk={pk}
