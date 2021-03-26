@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to ExpoCrudBoard 👋</h1>
 <img alt="GitHub" src="https://img.shields.io/github/license/DPS0340/expocrudboard?style=flat-square">
 
-> Yet Another React Native / Expo Board
+> Yet Another React Native / Expo Forum
 
 [demo](https://d1nz4ety4wohz9.cloudfront.net)
 
