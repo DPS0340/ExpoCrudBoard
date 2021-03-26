@@ -9,6 +9,8 @@
 <img width="1536" alt="Screen Shot 2021-03-26 at 4 28 48 PM" src="https://user-images.githubusercontent.com/32592965/112597508-8b44c580-8e50-11eb-9ea6-cab60590a9ad.png">
 <img width="1536" alt="Screen Shot 2021-03-26 at 4 28 59 PM" src="https://user-images.githubusercontent.com/32592965/112597513-8d0e8900-8e50-11eb-876d-cb3e1b89343b.png">
 <img width="1345" alt="Screen Shot 2021-03-26 at 4 29 21 PM" src="https://user-images.githubusercontent.com/32592965/112597494-8718a800-8e50-11eb-985e-4b1eb168cc70.png">
+<img width="1536" alt="Screen Shot 2021-03-26 at 4 39 44 PM" src="https://user-images.githubusercontent.com/32592965/112598443-edea9100-8e51-11eb-86cf-b61ad794ba47.png">
+
 ## Install
 
 ```sh
