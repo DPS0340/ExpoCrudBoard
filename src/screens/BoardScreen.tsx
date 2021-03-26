@@ -23,15 +23,21 @@ export default function BoardScreen(props: {
   const { pk, name, page: pageString } = route.params!;
   const page = isNaN(pageString) ? 1 : +pageString;
 
-  const { posts, isLoading, isSuccess, postsError, reset } = useSelector(
-    (state) => ({
-      posts: state.postsReducers.posts,
-      isLoading: state.postsReducers.isLoading,
-      isSuccess: state.postsReducers.isSuccess,
-      postsError: state.postsReducers.error,
-      reset: state.postsReducers.reset,
-    })
-  );
+  const {
+    isLogin,
+    posts,
+    isLoading,
+    isSuccess,
+    postsError,
+    reset,
+  } = useSelector((state) => ({
+    isLogin: state.loginReducers.isLogin,
+    posts: state.postsReducers.posts,
+    isLoading: state.postsReducers.isLoading,
+    isSuccess: state.postsReducers.isSuccess,
+    postsError: state.postsReducers.error,
+    reset: state.postsReducers.reset,
+  }));
   const dispatch = useDispatch();
 
   const getPosts = () => {
@@ -99,7 +105,9 @@ export default function BoardScreen(props: {
           />
         )}
       />
-      <Paper.Button onPress={onWriteClicked}>Write</Paper.Button>
+      {isLogin ? (
+        <Paper.Button onPress={onWriteClicked}>Write</Paper.Button>
+      ) : null}
       <RN.View
         style={{
           flexDirection: "row",
