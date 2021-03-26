@@ -15,6 +15,7 @@ export default function CommentsComponent(props: {
   const { pk } = props;
   const dispatch = useDispatch();
   const {
+    isLogin,
     loginData,
     comments,
     reset,
@@ -22,6 +23,7 @@ export default function CommentsComponent(props: {
     isSuccess,
     boardError,
   } = useSelector((state) => ({
+    isLogin: state.loginReducers.isLogin,
     loginData: state.loginReducers.data,
     comments: state.commentsReducers.comments,
     reset: state.commentsReducers.reset,
@@ -45,11 +47,13 @@ export default function CommentsComponent(props: {
           <CommentComponent item={item} pk={item.pk} loginData={loginData} />
         )}
       />
-      <WriteCommentComponent
-        pk={pk}
-        dispatchAction={commentsActions.writeComment}
-        componentName={"Comment"}
-      />
+      {isLogin ? (
+        <WriteCommentComponent
+          pk={pk}
+          dispatchAction={commentsActions.writeComment}
+          componentName={"Comment"}
+        />
+      ) : null}
     </RN.View>
   );
 }
