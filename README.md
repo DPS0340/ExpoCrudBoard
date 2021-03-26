@@ -15,6 +15,7 @@
 ## Install
 
 ```sh
+npm install -g expo-cli
 npm install
 ```
 
