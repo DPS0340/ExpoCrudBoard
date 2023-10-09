@@ -1,6 +1,5 @@
 node_modules/**/*
 .expo/*
-.yarn
 npm-debug.*
 *.jks
 *.p8
@@ -12,3 +11,6 @@ web-build/
 
 # macOS
 .DS_Store
+
+.yarn
+.yarnrc.yml
